@@ -1,0 +1,56 @@
+
+.dance-card-header {
+  border-bottom: 1px solid $white;
+  border-top: 1px solid white;
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr 90px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:  'entryNum dance-name dance-name entryDT'
+                        'entryNum dance-song dance-song entryDT';
+  justify-items: center;
+  align-items: center;
+}
+
+.dance-name {
+  grid-column: 2 / span 2;
+}
+.dance-song {
+  grid-column:  2 / span 2;
+}
+
+.entry-number {
+  grid-area: entryNum;
+}
+
+.entryDT {
+  grid-area: entryDT;
+}
+
+.dance-card-body {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  justify-items: center;
+  align-items: center; 
+} 
+
+.dance-label {
+  font-weight: bolder;
+  font-size: larger;
+  color: $highlight-cool;
+  padding: .4rem 0;
+}
+.dance-value {
+  justify-self: start;
+  ul {
+    list-style: disc;
+    margin-left: 1rem;
+  } li {
+    padding: .3rem 0;
+  }
+}
+
+.notes-label {
+  align-self: start;
+}
+
+

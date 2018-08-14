@@ -1,0 +1,142 @@
+const database = {
+  STUDIOS: {
+    s1: {
+      name: "studio1",
+      routines: {
+        r1: true,
+        r2: true,
+        r3: true,
+        r4: true
+      }
+    },
+    s2: {
+      name: "studio2",
+      routines: {
+        r5: true,
+        r6: true,
+        r7: true,
+        r8: true
+      }
+    },
+    s3: {
+      name: "studio3",
+      routines: {
+        r9: true,
+        r10: true,
+        r11: true,
+        r12: true
+      }
+    }
+  },
+
+  ROUTINES: {
+    r1: {
+      studio: "s1",
+      name: "r1-name",
+      song: "r1-song",
+      dancers: {
+        d1: true,
+        d2: true,
+        d3: true,
+        d4: true
+      }
+    },
+    r2: {
+      studio: "s1",
+      name: "r2-name",
+      song: "r2-song",
+      dancers: {
+        d1: true,
+        d2: true,
+        d3: true,
+        d4: true
+      }
+    },
+    r3: {
+      studio: "s2",
+      name: "r3-name",
+      song: "r3-song",
+      dancers: {
+        d1: true,
+        d2: true,
+        d3: true,
+        d4: true
+      }
+    },
+    r4: {
+      studio: "s2",
+      name: "r4-name",
+      song: "r4-song",
+      dancers: {
+        d1: true,
+        d2: true,
+        d3: true,
+        d4: true
+      }
+    }
+  },
+
+  DANCERS: {
+    d1: {
+      parent: "u1",
+      name: "d1-name",
+      routines: {
+        r1: true,
+        r2: true,
+        r3: true,
+        r4: true
+      }
+    },
+    d2: {
+      parent: "u2",
+      name: "d2-name",
+      routines: {
+        r1: true,
+        r2: true,
+        r3: true
+      }
+    },
+    d3: {
+      parent: "u3",
+      name: "d3-name",
+      routines: {
+        r1: true,
+        r2: true
+      }
+    },
+    d4: {
+      parent: "u4",
+      name: "d4-name",
+      routines: {
+        r1: true
+      }
+    }
+  },
+
+  USERS: {
+    u1: {
+      name: "u1-name",
+      dancers: {
+        d1: true
+      }
+    },
+    u2: {
+      name: "u2-name",
+      dancers: {
+        d2: true
+      }
+    },
+    u3: {
+      name: "u3-name",
+      dancers: {
+        d3: true
+      }
+    },
+    u4: {
+      name: "u4-name",
+      dancers: {
+        d4: true
+      }
+    }
+  }
+};

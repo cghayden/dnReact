@@ -1,0 +1,65 @@
+@function mix-neutral($color) {
+	@if (is-highest-key-value($color)) {
+		@if is-high-key-value(complement($color)) {
+			@return mix(complement($color), $color, 19%);
+		}
+		@else {
+			@return mix(complement($color), $color, 13%);
+		}
+	}
+	@else if (is-high-key-value($color)) {
+		@if is-high-key-value(complement($color)) {
+			@return mix(complement($color), $color, 31%);
+		}
+		@else {
+			@return mix(complement($color), $color, 23%);
+		}
+	}
+	@else {
+		@if is-highest-key-value(complement($color)) {
+			@return mix(complement($color), $color, 31%);
+		}
+		@if is-high-key-value(complement($color)) {
+			@return mix(complement($color), $color, 26%);
+		}
+		@else {
+			@return mix(complement($color), $color, 23%);
+		}
+	}
+}
+
+$blue: hsla(240, 67%, 53%, 0.9);
+$black: hsl(240, 33%, 20%);
+$primary-white: hsl(240, 50%, 97%);
+$white: hsl(240, 40%, 96%);
+$white-text: hsl(240, 40%, 92%);
+$white-text-shadow: hsl(240, 40%, 50%);
+$whiteActive: hsl(240, 24%, 97%);
+$highlight: hsla(60, 90%, 70%, 0.95);
+$highlight-cool: hsl(240,75%, 85%);
+
+$first-color: $blue;
+$anchor-hover: lighten($first-color, 15%);
+$primary-light: lighten($first-color, 30%);
+
+$link-light: hsl(240, 100%, 87%);
+
+$primary-bold: hsl(240, 90%, 40%);
+$primary_dark: darken($first-color, 20%);
+
+$primary_neutral: mix-neutral($first-color);
+$primary_neutral_dark: darken($primary_neutral, 35%);
+$primary_neutral_light: lighten($primary_neutral, 35%);
+
+$second-color: complement($first-color);
+$secondary_neutral: mix-neutral($second-color);
+$secondary_neutral_dark: hsla(15, 70%, 45%, 0.8);
+$secondary_neutral_light: lighten($secondary_neutral, 35%);
+
+.highlight {
+	color: $highlight;
+}
+
+.highlight-cool {
+	color: $highlight-cool;
+}

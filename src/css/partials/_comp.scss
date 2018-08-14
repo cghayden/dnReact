@@ -1,0 +1,10 @@
+.comp-note {
+  max-width: 250px;
+}
+
+.address,
+.hotel {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}

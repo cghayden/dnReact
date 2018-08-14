@@ -1,0 +1,13 @@
+#footer {
+  color: $white;
+  height: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
