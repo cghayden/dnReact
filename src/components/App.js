@@ -4,6 +4,11 @@ import firebase from "firebase";
 import base from "../base";
 
 // import AuthRoutes from "./AuthRoutes";
+import UserContext from "./UserContext";
+
+import LoginOrSignUp from "./LoginOrSignUp";
+import UserTypeRouter from "./UserTypeRouter";
+
 import Landing from "./Landing";
 import Dancer from "./Dancer";
 import Studio from "./Studio";
@@ -13,39 +18,30 @@ import GlobalNav from "./GlobalNav";
 
 class App extends React.Component {
   state = {
-    userType: null,
     userData: null
   };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        this.setState({ userType: null, userData: null });
+      if (user) {
+        this.setState({ userData: user });
       } else {
-        base.fetch(`users/${user.uid}`, {
-          context: this,
-          then(userData) {
-            console.log(userData);
-            this.setState({
-              userType: userData.userType,
-              userData
-            });
-          }
-        });
+        this.setState({ userData: null });
       }
     });
   }
 
   render() {
+    const { userData } = this.state;
+
     if (!this.state.userData) {
-      return <AuthRouter />;
+      return <LoginOrSignUp />;
     }
-    if (this.state.userType === "user") {
-      return <Dancer user={this.state.userData} />;
-    }
-    if (this.state.userType === "studio") {
-      return <Studio />;
-    }
+    return (
+      <UserContext.Provider value={userData}>
+        <UserTypeRouter />
+      </UserContext.Provider>
+    );
   }
 }
 

@@ -11,7 +11,6 @@ class CreateUser extends React.Component {
     const email = this.state.email;
     const password = this.state.password;
     const name = this.state.name;
-    const userType = "u";
     //1. register user  -> firebase
     await firebaseApp
       .auth()
@@ -21,15 +20,15 @@ class CreateUser extends React.Component {
         console.error(error);
       });
     // 2. if success, post new user to firebase and set localStorage dnid
-    const user = await firebase.auth().currentUser;
-    const dnid = `${userType}${Date.now()}`;
-    await base.post(`users/${user.uid}/name`, {
-      data: name
-    });
-    await base.post(`users/${user.uid}/dnid`, {
-      data: dnid
-    });
-    localStorage.setItem("dnid", dnid);
+    // const user = await firebase.auth().currentUser;
+    // const dnid = `${userType}${Date.now()}`;
+    // await base.post(`users/${user.uid}/name`, {
+    //   data: name
+    // });
+    // await base.post(`users/${user.uid}/dnid`, {
+    //   data: dnid
+    // });
+    // localStorage.setItem("dnid", dnid);
   };
 
   handleInputChange = event => {
@@ -48,15 +47,15 @@ class CreateUser extends React.Component {
         <h1>Create a User Account</h1>
         <form className="signup body" onSubmit={this.createAccount}>
           <input
+            type="text"
             name="name"
             onChange={this.handleInputChange}
-            type="text"
             placeholder="name"
           />
           <input
             name="email"
-            onChange={this.handleInputChange}
             type="email"
+            onChange={this.handleInputChange}
             placeholder="email"
           />
           <input
