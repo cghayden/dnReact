@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 // import firebase from "firebase";
-import base from "../base";
-import DancerNav from "./dancer/DancerNav";
-import Routines from "./dancer/Routines";
-import Competitions from "./dancer/Competitions";
+import base from "../../base";
+import DancerNav from "./DancerNav";
+import Routines from "./Routines";
+import Competitions from "./Competitions";
 
 class Dancer extends React.Component {
   state = {

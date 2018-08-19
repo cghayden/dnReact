@@ -1,20 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
 import firebase from "firebase";
 import base from "../base";
 
-// import AuthRoutes from "./AuthRoutes";
 import UserContext from "./UserContext";
 
 import LoginOrSignUp from "./LoginOrSignUp";
 import UserTypeRouter from "./UserTypeRouter";
-
-import Landing from "./Landing";
-import Dancer from "./Dancer";
-import Studio from "./Studio";
-import AuthRouter from "./AuthRouter";
-import GlobalNav from "./GlobalNav";
-// import NotFound from "./NotFound";
 
 class App extends React.Component {
   state = {

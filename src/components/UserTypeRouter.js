@@ -1,12 +1,18 @@
 import React from "react";
 
 import SignOutButton from "./SignOutButton";
+import UserContext from "./UserContext";
 
 const UserTypeRouter = () => (
-  <div>
-    <h1>implement routing based in user type</h1>
-    <SignOutButton />
-  </div>
+  <UserContext.Consumer>
+    {userData => (
+      <div>
+        <h1>implement routing based in user type</h1>
+        <p>User: {userData.email}</p>
+        <SignOutButton />
+      </div>
+    )}
+  </UserContext.Consumer>
 );
 
 export default UserTypeRouter;
