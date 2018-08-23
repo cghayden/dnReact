@@ -7,7 +7,7 @@ const UserTypeRouter = () => (
   <UserContext.Consumer>
     {userData => (
       <div>
-        <h1>implement routing based in user type</h1>
+        <h1>implement routing based on user type</h1>
         <p>User: {userData.email}</p>
         <SignOutButton />
       </div>
