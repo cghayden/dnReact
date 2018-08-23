@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "firebase";
 
-import base, { firebaseApp } from "../base";
+import { firebaseApp } from "../base";
 
 class LoginOrSignUp extends React.Component {
   state = {
@@ -32,32 +32,29 @@ class LoginOrSignUp extends React.Component {
     const email = this.state.email;
     const password = this.state.password;
     const userType = this.state.userType;
-    // const name = this.state.name;
+    const name = this.state.name;
     //1. register user  -> firebase
     await firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log(user.uid, email);
-        base.post(`${userType}/${user.uid}/email`, {
-          data: email
-        });
-      })
+      .then(user => this.writeUserData(user.uid, userType, name, email))
       .catch(error => {
         // Handle Errors here.
         console.error(error);
         this.setState({ error });
       });
-    // 2. if success, post new user to firebase and set localStorage dnid
-    // const user = await firebase.auth().currentUser;
-    // const dnid = `${userType}${Date.now()}`;
-    // await base.post(`users/${user.uid}/name`, {
-    //   data: name
-    // });
-    // await base.post(`users/${user.uid}/dnid`, {
-    //   data: dnid
-    // });
     // localStorage.setItem("dnid", dnid);
+  };
+
+  writeUserData = (userId, userType, name, email) => {
+    firebase
+      .database()
+      .ref(`users/${userId}`)
+      .set({
+        userType,
+        name,
+        email
+      });
   };
 
   login = event => {
@@ -83,37 +80,37 @@ class LoginOrSignUp extends React.Component {
           <h1>Create an Account</h1>
           {error && <p>{error.message}</p>}
           <form className="body" onSubmit={this.createAccount}>
-            <div class="pb2">
+            <div className="pb2">
               <input
                 type="radio"
                 name="userType"
                 id="dancerRadio"
-                value="dancers"
+                value="dancer"
                 checked={this.state.userType === "dancer"}
                 onChange={this.handleTypeChange}
               />
-              <label class="pl2 pr5" for="dancerRadio">
+              <label className="pl2 pr5" htmlFor="dancerRadio">
                 Dancer
               </label>
               <input
                 type="radio"
                 name="userType"
                 id="studioRadio"
-                value="studios"
+                value="studio"
                 checked={this.state.userType === "studio"}
                 onChange={this.handleTypeChange}
               />
-              <label class="pl1 pr5" for="studioRadio">
+              <label className="pl1 pr5" htmlFor="studioRadio">
                 Studio
               </label>
             </div>
             <div className="signup">
-              {/* <input
-              type="text"
-              name="name"
-              onChange={this.handleInputChange}
-              placeholder="name"
-            /> */}
+              <input
+                type="text"
+                name="name"
+                onChange={this.handleInputChange}
+                placeholder="name"
+              />
               <input
                 name="email"
                 type="email"
