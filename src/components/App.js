@@ -12,10 +12,21 @@ class App extends React.Component {
     userData: null
   };
 
+  getUserData = async uid => {
+    const userData = await base.fetch(`users/${uid}`, {
+      context: this
+    });
+    console.log(userData);
+    this.setState({ userData });
+  };
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ userData: user });
+        console.log(user.uid);
+        // look up in user in database and retieve data
+        this.getUserData(user.uid);
+        // this.setState({ userData: user });
       } else {
         this.setState({ userData: null });
       }

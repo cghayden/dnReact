@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "firebase";
 
-import base, { firebaseApp } from "../base";
+import { firebaseApp } from "../base";
 
 class LoginOrSignUp extends React.Component {
   state = {
