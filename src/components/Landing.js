@@ -1,11 +1,11 @@
 import React from "react";
 import firebase from "firebase";
 import base from "../base";
+import { navigate } from "@reach/router";
 
 import UserContext from "./UserContext";
 
 import LoginOrSignUp from "./LoginOrSignUp";
-import UserTypeRouter from "./UserTypeRouter";
 
 class App extends React.Component {
   state = {
@@ -13,36 +13,29 @@ class App extends React.Component {
   };
 
   getUserData = async uid => {
-    const userData = await base.fetch(`users/${uid}`, {
+    const userType = await base.fetch(`users/${uid}/userType`, {
       context: this
     });
-    console.log(userData);
-    this.setState({ userData });
+    console.log(userType);
+    navigate(`/${userType}/${uid}`);
   };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log(user.uid);
         // look up in user in database and retieve data
         this.getUserData(user.uid);
-        // this.setState({ userData: user });
-      } else {
-        this.setState({ userData: null });
+        // navigate(`/parent`);
       }
     });
   }
 
   render() {
-    const { userData } = this.state;
-
-    if (!this.state.userData) {
-      return <LoginOrSignUp />;
-    }
     return (
-      <UserContext.Provider value={userData}>
-        <UserTypeRouter />
-      </UserContext.Provider>
+      <LoginOrSignUp />
+      // <UserContext.Provider value={userData}>
+      //   <UserTypeRouter />
+      // </UserContext.Provider>
     );
   }
 }

@@ -1,15 +1,26 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-// import firebase from "firebase";
+import { Router, Link, navigate } from "@reach/router";
+import firebase from "firebase";
 import base from "../../base";
 import DancerNav from "./DancerNav";
+import ParentHome from "./ParentHome";
 import Routines from "./Routines";
 import Competitions from "./Competitions";
 
-class Dancer extends React.Component {
+class Parent extends React.Component {
   state = {
+    userData: null,
     dancers: {}
   };
+
+  // if we get here, there is a user logged in, but what about when signout?
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        navigate("../");
+      }
+    });
+  }
 
   loadUserData = async uid => {
     const user = await base.fetch(`users/${this.props.uid}`, {
@@ -46,22 +57,20 @@ class Dancer extends React.Component {
     });
   };
 
-  // componentDidMount() {
-  //   this.loadUserData(this.props.uid);
-  // }
-
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <DancerNav />
-          <h1> Dancer's home page </h1>
-          <Route exact path="/routines" component={Routines} />
-          <Route exact path="/competitions" component={Competitions} />
-        </div>
-      </BrowserRouter>
+      <div>
+        <DancerNav />
+        <Router>
+          <ParentHome path="/:uid" />
+          <Routines path="/routines" />
+        </Router>
+        <h1> Dancer's home page </h1>
+        <Link to="/routines">Routines</Link>
+        <Link to="/competitions">Competitions</Link>
+      </div>
     );
   }
 }
 
-export default Dancer;
+export default Parent;
