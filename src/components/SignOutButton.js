@@ -1,5 +1,6 @@
 import React from "react";
 import firebase from "firebase";
+import { navigate } from "@reach/router";
 
 class SignOutButton extends React.Component {
   logout = async () => {

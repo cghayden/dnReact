@@ -4,9 +4,19 @@ import "./css/tachyons/text-align.css";
 import "./css/normalize.css";
 import "./css/style.css";
 
+import { Router } from "@reach/router";
 import React from "react";
 import { render } from "react-dom";
 
-import App from "./components/App";
+import Landing from "./components/Landing";
+import Parent from "./components/parent/Parent";
+import Studio from "./components/studio/Studio";
 
-render(<App />, document.querySelector("#app"));
+render(
+  <Router>
+    <Landing path="/" />
+    <Parent path="/parent/*" />
+    <Studio path="/studio/*" />
+  </Router>,
+  document.querySelector("#app")
+);

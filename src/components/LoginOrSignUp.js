@@ -84,13 +84,13 @@ class LoginOrSignUp extends React.Component {
               <input
                 type="radio"
                 name="userType"
-                id="dancerRadio"
-                value="dancer"
-                checked={this.state.userType === "dancer"}
+                id="parentRadio"
+                value="parent"
+                checked={this.state.userType === "parent"}
                 onChange={this.handleTypeChange}
               />
-              <label className="pl2 pr5" htmlFor="dancerRadio">
-                Dancer
+              <label className="pl2 pr5" htmlFor="parentRadio">
+                Parent
               </label>
               <input
                 type="radio"
