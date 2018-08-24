@@ -4,6 +4,7 @@ import SignOutButton from "../SignOutButton";
 import Routines from "./Routines";
 import Competitions from "./Competitions";
 import ParentHome from "./ParentHome";
+
 const DancerNav = props => (
   <div>
     <div className="dancerNav">
