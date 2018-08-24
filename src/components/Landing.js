@@ -17,7 +17,7 @@ class App extends React.Component {
       context: this
     });
     console.log(userType);
-    navigate(`/${userType}/${uid}`);
+    navigate(`/${userType}`);
   };
 
   componentDidMount() {

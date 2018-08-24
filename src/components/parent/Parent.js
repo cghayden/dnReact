@@ -1,11 +1,9 @@
 import React from "react";
-import { Router, Link, navigate } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import firebase from "firebase";
 import base from "../../base";
 import DancerNav from "./DancerNav";
-import ParentHome from "./ParentHome";
 import Routines from "./Routines";
-import Competitions from "./Competitions";
 
 class Parent extends React.Component {
   state = {
@@ -60,14 +58,9 @@ class Parent extends React.Component {
   render() {
     return (
       <div>
+        <h1> Parent's home page </h1>
         <DancerNav />
-        <Router>
-          <ParentHome path="/:uid" />
-          <Routines path="/routines" />
-        </Router>
-        <h1> Dancer's home page </h1>
-        <Link to="/routines">Routines</Link>
-        <Link to="/competitions">Competitions</Link>
+        {/* Can add router here and everything above will be persisitent */}
       </div>
     );
   }
