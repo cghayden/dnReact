@@ -1,5 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
+import UserContext from "../UserContext";
 
-const ParentIndex = () => <h2>Parent Home</h2>;
+class ParentIndex extends Component {
+  render() {
+    return (
+      <UserContext.Consumer>
+        {user => (
+          <div>
+            <h2>Parent Home</h2>
+            {user.name}
+          </div>
+        )}
+      </UserContext.Consumer>
+    );
+  }
+}
 
 export default ParentIndex;

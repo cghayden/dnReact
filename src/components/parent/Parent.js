@@ -1,11 +1,15 @@
 import React from "react";
-import { navigate } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import firebase from "firebase";
 import base from "../../base";
 import ParentNav from "./ParentNav";
+import UserContext from "../UserContext";
+import ParentIndex from "./ParentIndex";
+import Routines from "./Routines";
+import Competitions from "./Competitions";
 
 class Parent extends React.Component {
-  state = {};
+  state = { user: {} };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
@@ -39,28 +43,37 @@ class Parent extends React.Component {
     // }
   };
 
-  fetchRoutines = (dancersRoutines, dancer, routines) => {
-    routines[dancer] = {};
-    const routineIds = Object.keys(dancersRoutines);
-    routineIds.map(id => {
-      base.fetch(`routines/${id}`, {
-        context: this,
-        then(data) {
-          routines[dancer][id] = data;
-        }
-      });
-    });
-  };
-
   render() {
+    const { user } = this.state;
+
     return (
-      <div>
-        <h1> Parent's page </h1>
-        <ParentNav />
-        {/* Can add router here and everything above will be persistent */}
-      </div>
+      <UserContext.Provider value={user}>
+        <div>
+          <h1> Parent's page </h1>
+          <ParentNav />
+
+          <Router>
+            <ParentIndex path="/" />
+            <Routines path="routines" />
+            <Competitions path="competitions" />
+          </Router>
+        </div>
+      </UserContext.Provider>
     );
   }
 }
 
 export default Parent;
+
+// fetchRoutines = (dancersRoutines, dancer, routines) => {
+//   routines[dancer] = {};
+//   const routineIds = Object.keys(dancersRoutines);
+//   routineIds.map(id => {
+//     base.fetch(`routines/${id}`, {
+//       context: this,
+//       then(data) {
+//         routines[dancer][id] = data;
+//       }
+//     });
+//   });
+// };
