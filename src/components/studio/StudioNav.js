@@ -9,7 +9,7 @@ import Students from "./Students";
 
 const StudioNav = props => (
   <div>
-    <div className="dancerNav">
+    <div className="parentNav">
       <SignOutButton />
     </div>
     <nav>

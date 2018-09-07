@@ -16,7 +16,6 @@ class App extends React.Component {
     const userType = await base.fetch(`users/${uid}/userType`, {
       context: this
     });
-    console.log(userType);
     navigate(`/${userType}`);
   };
 

@@ -5,9 +5,9 @@ import Routines from "./Routines";
 import Competitions from "./Competitions";
 import ParentHome from "./ParentHome";
 
-const DancerNav = props => (
+const ParentNav = props => (
   <div>
-    <div className="dancerNav">
+    <div className="parentNav">
       {/*for each dancer, make an icon, active or not, onClick = setState to include that dancer's info */}
       <p className="icon">A</p>
       <p className="icon icon-active">E</p>
@@ -25,4 +25,4 @@ const DancerNav = props => (
   </div>
 );
 
-export default DancerNav;
+export default ParentNav;

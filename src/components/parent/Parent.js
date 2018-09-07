@@ -2,7 +2,7 @@ import React from "react";
 import { Router, navigate } from "@reach/router";
 import firebase from "firebase";
 import base from "../../base";
-import DancerNav from "./DancerNav";
+import ParentNav from "./ParentNav";
 import Routines from "./Routines";
 
 class Parent extends React.Component {
@@ -59,7 +59,7 @@ class Parent extends React.Component {
     return (
       <div>
         <h1> Parent's home page </h1>
-        <DancerNav />
+        <ParentNav />
         {/* Can add router here and everything above will be persisitent */}
       </div>
     );
