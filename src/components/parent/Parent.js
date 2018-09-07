@@ -7,6 +7,7 @@ import UserContext from "../UserContext";
 import ParentIndex from "./ParentIndex";
 import Routines from "./Routines";
 import Competitions from "./Competitions";
+import MyDancers from "./MyDancers";
 
 class Parent extends React.Component {
   state = { user: {} };
@@ -56,6 +57,7 @@ class Parent extends React.Component {
             <ParentIndex path="/" />
             <Routines path="routines" />
             <Competitions path="competitions" />
+            <MyDancers path="dancers" />
           </Router>
         </div>
       </UserContext.Provider>
