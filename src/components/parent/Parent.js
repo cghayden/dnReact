@@ -3,67 +3,77 @@ import { Router, navigate } from "@reach/router";
 import firebase from "firebase";
 import base from "../../base";
 import ParentNav from "./ParentNav";
+import UserContext from "../UserContext";
+import ParentIndex from "./ParentIndex";
 import Routines from "./Routines";
+import Competitions from "./Competitions";
 
 class Parent extends React.Component {
-  state = {
-    userData: null,
-    dancers: {}
-  };
+  state = { user: {} };
 
-  // if we get here, there is a user logged in, but what about when signout?
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        navigate("../");
-      }
+      // // if we get here, there is a user logged in, but what about when signout?
+      !user
+        ? navigate("../")
+        : // there is a user... retrieve their data
+          this.loadUserData(user.uid);
     });
   }
 
   loadUserData = async uid => {
-    const user = await base.fetch(`users/${this.props.uid}`, {
+    const user = await base.fetch(`users/${uid}`, {
       context: this
     });
-    if (user.dancers) {
-      const dancerKeys = Object.keys(user.dancers);
-      const dancers = {};
-      const routines = {};
-      dancerKeys.map(key => {
-        base.fetch(`dancers/${key}`, {
-          context: this,
-          then(data) {
-            dancers[key] = data;
-            this.fetchRoutines(data.routines, data.name, routines);
-          }
-        });
-      });
-      this.setState({ dancers, routines });
-    }
     this.setState({ user });
-  };
-
-  fetchRoutines = (dancersRoutines, dancer, routines) => {
-    routines[dancer] = {};
-    const routineIds = Object.keys(dancersRoutines);
-    routineIds.map(id => {
-      base.fetch(`routines/${id}`, {
-        context: this,
-        then(data) {
-          routines[dancer][id] = data;
-        }
-      });
-    });
+    // if (user.dancers) {
+    //   const dancerKeys = Object.keys(user.dancers);
+    //   const dancers = {};
+    //   const routines = {};
+    //   dancerKeys.map(key => {
+    //     base.fetch(`dancers/${key}`, {
+    //       context: this,
+    //       then(data) {
+    //         dancers[key] = data;
+    //         this.fetchRoutines(data.routines, data.name, routines);
+    //       }
+    //     });
+    //   });
+    //   this.setState({ dancers, routines });
+    // }
   };
 
   render() {
+    const { user } = this.state;
+
     return (
-      <div>
-        <h1> Parent's home page </h1>
-        <ParentNav />
-        {/* Can add router here and everything above will be persisitent */}
-      </div>
+      <UserContext.Provider value={user}>
+        <div>
+          <h1> Parent's page </h1>
+          <ParentNav />
+
+          <Router>
+            <ParentIndex path="/" />
+            <Routines path="routines" />
+            <Competitions path="competitions" />
+          </Router>
+        </div>
+      </UserContext.Provider>
     );
   }
 }
 
 export default Parent;
+
+// fetchRoutines = (dancersRoutines, dancer, routines) => {
+//   routines[dancer] = {};
+//   const routineIds = Object.keys(dancersRoutines);
+//   routineIds.map(id => {
+//     base.fetch(`routines/${id}`, {
+//       context: this,
+//       then(data) {
+//         routines[dancer][id] = data;
+//       }
+//     });
+//   });
+// };
