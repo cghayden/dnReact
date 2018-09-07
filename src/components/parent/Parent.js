@@ -58,9 +58,9 @@ class Parent extends React.Component {
   render() {
     return (
       <div>
-        <h1> Parent's home page </h1>
+        <h1> Parent's page </h1>
         <ParentNav />
-        {/* Can add router here and everything above will be persisitent */}
+        {/* Can add router here and everything above will be persistent */}
       </div>
     );
   }

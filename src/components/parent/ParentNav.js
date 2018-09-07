@@ -3,7 +3,7 @@ import { Router, Link } from "@reach/router";
 import SignOutButton from "../SignOutButton";
 import Routines from "./Routines";
 import Competitions from "./Competitions";
-import ParentHome from "./ParentHome";
+import ParentIndex from "./ParentIndex";
 
 const ParentNav = props => (
   <div>
@@ -14,11 +14,12 @@ const ParentNav = props => (
       <SignOutButton />
     </div>
     <nav>
+      <Link to="./">Home</Link>
       <Link to="routines">Routines</Link>
       <Link to="competitions">Competitions</Link>
     </nav>
     <Router>
-      <ParentHome path="/" />
+      <ParentIndex path="/" />
       <Routines path="routines" />
       <Competitions path="competitions" />
     </Router>
