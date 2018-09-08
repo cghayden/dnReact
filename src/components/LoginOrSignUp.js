@@ -1,7 +1,7 @@
 import React from "react";
 import firebase from "firebase";
-
-import { firebaseApp } from "../base";
+import SignOutButton from "./SignOutButton";
+import { firestore } from "../base";
 
 class LoginOrSignUp extends React.Component {
   state = {
@@ -34,26 +34,51 @@ class LoginOrSignUp extends React.Component {
     const userType = this.state.userType;
     const name = this.state.name;
     //1. register user  -> firebase
-    await firebaseApp
+    await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => this.writeUserData(user.uid, userType, name, email))
+      .then(user => {
+        console.log("new_user", user);
+        this.writeUserType(user.user.uid, userType, name, email);
+        localStorage.setItem("dancerNotesUserType", userType);
+      })
       .catch(error => {
         // Handle Errors here.
         console.error(error);
         this.setState({ error });
       });
-    // localStorage.setItem("dnid", dnid);
   };
 
-  writeUserData = (userId, userType, name, email) => {
-    firebase
-      .database()
-      .ref(`users/${userId}`)
-      .set({
+  writeUserType = (userId, userType, name, email) => {
+    firestore
+      .collection("users")
+      .add({
+        userId,
         userType,
         name,
         email
+      })
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
+  };
+
+  writeUserData = (userId, userType, name, email) => {
+    firestore
+      .collection(userType)
+      .add({
+        userId,
+        name,
+        email
+      })
+      .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
       });
   };
 
@@ -77,6 +102,7 @@ class LoginOrSignUp extends React.Component {
     return (
       <div>
         <div>
+          <SignOutButton />
           <h1>Create an Account</h1>
           {error && <p>{error.message}</p>}
           <form className="body" onSubmit={this.createAccount}>
@@ -123,7 +149,12 @@ class LoginOrSignUp extends React.Component {
                 type="password"
                 placeholder="password"
               />
-              <button type="submit">Sign Up</button>
+              <button
+                type="submit"
+                disabled={this.state.userType === null && !this.state.userType}
+              >
+                Sign Up
+              </button>
             </div>
           </form>
         </div>

@@ -9,17 +9,12 @@ import MyDancers from "./MyDancers";
 const ParentNav = props => (
   <div>
     <nav className="parentNav pv3 ">
+      <Link to="./">Home</Link>
       <Link to="routines">Routines</Link>
       <Link to="competitions">Competitions</Link>
       <Link to="dancers">My Dancers</Link>
       <SignOutButton />
     </nav>
-    {/* <Router>
-      <ParentIndex path="/" />
-      <Routines path="routines" />
-      <Competitions path="competitions" />
-      <MyDancers path="dancers" />
-    </Router> */}
   </div>
 );
 

@@ -18,7 +18,8 @@ class Parent extends React.Component {
       !user
         ? navigate("../")
         : // there is a user... retrieve their data
-          this.loadUserData(user.uid);
+          // this.loadUserData(user.uid);
+          console.log("user");
     });
   }
 

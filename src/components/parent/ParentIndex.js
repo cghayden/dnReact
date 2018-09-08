@@ -5,12 +5,15 @@ class ParentIndex extends Component {
   render() {
     return (
       <UserContext.Consumer>
-        {user => (
-          <div>
-            <h2>Parent Home</h2>
-            {user.name}
-          </div>
-        )}
+        {user => {
+          console.log(user);
+          return (
+            <div>
+              <h2>Parent Home</h2>
+              {user.name}
+            </div>
+          );
+        }}
       </UserContext.Consumer>
     );
   }

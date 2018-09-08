@@ -1,23 +1,43 @@
 import Rebase from "re-base";
 import firebase from "firebase";
+import "firebase/firestore";
 
-var config = {
-  apiKey: "AIzaSyCzK72Ph0ZZikXj1b32AJGhXU-gunCckhM",
-  authDomain: "dancer-notes.firebaseapp.com",
-  databaseURL: "https://dancer-notes.firebaseio.com",
-  projectId: "dancer-notes",
-  storageBucket: "dancer-notes.appspot.com",
-  messagingSenderId: "332438519195"
+// const databaseConfig = {
+//   apiKey: "AIzaSyCzK72Ph0ZZikXj1b32AJGhXU-gunCckhM",
+//   authDomain: "dancer-notes.firebaseapp.com",
+//   databaseURL: "https://dancer-notes.firebaseio.com",
+//   projectId: "dancer-notes",
+//   storageBucket: "dancer-notes.appspot.com",
+//   messagingSenderId: "332438519195"
+// };
+
+// const firebaseApp = firebase.initializeApp(databaseConfig);
+
+//initialize Firestore
+const firestoreConfig = {
+  apiKey: "AIzaSyBEZhAE6I6TphPQ7OxD9HLxxO80olJ0D-g",
+  authDomain: "dn-firestore.firebaseapp.com",
+  databaseURL: "https://dn-firestore.firebaseio.com",
+  projectId: "dn-firestore",
+  storageBucket: "dn-firestore.appspot.com",
+  messagingSenderId: "321983348443"
 };
 
-const firebaseApp = firebase.initializeApp(config);
+firebase.initializeApp(firestoreConfig);
 
-//create an instance of re-base (bindings)
-const base = Rebase.createClass(firebaseApp.database());
+const firestore = firebase.firestore();
+
+// Disable deprecated features
+firestore.settings({
+  timestampsInSnapshots: true
+});
+
+//create an instance of re-base on firebaseApp(bindings)
+const base = Rebase.createClass(firestore);
 // firebaseApp.database() returns the actual database we have
 
 //named export
-export { firebaseApp };
+export { firestore };
 
 // default export
 export default base;

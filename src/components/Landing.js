@@ -22,9 +22,12 @@ class App extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        const userType = localStorage.getItem("dancerNotesUserType");
+        console.log("landing mount authchange", "userType= ", userType);
+
         // look up in user in database and retieve data
-        this.getUserData(user.uid);
-        // navigate(`/parent`);
+        // this.getUserData(user.uid);
+        navigate(userType);
       }
     });
   }
