@@ -1,10 +1,10 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 import SignOutButton from "../SignOutButton";
-import Routines from "./Routines";
-import Competitions from "./Competitions";
-import ParentIndex from "./ParentIndex";
-import MyDancers from "./MyDancers";
+// import Routines from "./Routines";
+// import Competitions from "./Competitions";
+// import ParentIndex from "./ParentIndex";
+// import MyDancers from "./MyDancers";
 
 const ParentNav = props => (
   <div>

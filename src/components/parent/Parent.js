@@ -1,7 +1,11 @@
 import React from "react";
 import { Router, navigate } from "@reach/router";
-import firebase from "firebase";
-import base from "../../base";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { firestore } from "../../base";
+// import base from "../../base";
+
 import ParentNav from "./ParentNav";
 import UserContext from "../UserContext";
 import ParentIndex from "./ParentIndex";
@@ -18,32 +22,42 @@ class Parent extends React.Component {
       !user
         ? navigate("../")
         : // there is a user... retrieve their data
-          // this.loadUserData(user.uid);
-          console.log("user");
+          this.loadUserData(user.uid);
+      // console.log("user", user.uid);
     });
   }
 
   loadUserData = async uid => {
-    const user = await base.fetch(`users/${uid}`, {
-      context: this
-    });
-    this.setState({ user });
-    // if (user.dancers) {
-    //   const dancerKeys = Object.keys(user.dancers);
-    //   const dancers = {};
-    //   const routines = {};
-    //   dancerKeys.map(key => {
-    //     base.fetch(`dancers/${key}`, {
-    //       context: this,
-    //       then(data) {
-    //         dancers[key] = data;
-    //         this.fetchRoutines(data.routines, data.name, routines);
-    //       }
-    //     });
-    //   });
-    //   this.setState({ dancers, routines });
-    // }
+    const docRef = await firestore.collection("parents").doc(uid);
+    docRef
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          this.setState({ user: doc.data() });
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch(function(error) {
+        console.log("Error getting document:", error);
+      });
   };
+
+  // if (user.dancers) {
+  //   const dancerKeys = Object.keys(user.dancers);
+  //   const dancers = {};
+  //   const routines = {};
+  //   dancerKeys.map(key => {
+  //     base.fetch(`dancers/${key}`, {
+  //       context: this,
+  //       then(data) {
+  //         dancers[key] = data;
+  //         this.fetchRoutines(data.routines, data.name, routines);
+  //       }
+  //     });
+  //   });
+  //   this.setState({ dancers, routines });
+  // }
 
   render() {
     const { user } = this.state;

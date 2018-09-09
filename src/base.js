@@ -1,5 +1,5 @@
 import Rebase from "re-base";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
 import "firebase/firestore";
 
 // const databaseConfig = {

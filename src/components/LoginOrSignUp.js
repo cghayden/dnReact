@@ -1,5 +1,7 @@
 import React from "react";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 import SignOutButton from "./SignOutButton";
 import { firestore } from "../base";
 
@@ -38,8 +40,8 @@ class LoginOrSignUp extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
-        console.log("new_user", user);
         this.writeUserType(user.user.uid, userType, name, email);
+        this.writeUserData(user.user.uid, userType, name, email);
         localStorage.setItem("dancerNotesUserType", userType);
       })
       .catch(error => {
@@ -49,48 +51,43 @@ class LoginOrSignUp extends React.Component {
       });
   };
 
-  writeUserType = (userId, userType, name, email) => {
+  writeUserType = (uid, userType, name, email) => {
+    const userData = { name, email, userType, uid };
     firestore
-      .collection("users")
-      .add({
-        userId,
-        userType,
-        name,
-        email
-      })
+      .collection(`users`)
+      .doc(uid)
+      .set(userData)
       .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with uID: ");
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
   };
 
-  writeUserData = (userId, userType, name, email) => {
+  writeUserData = (uid, userType, name, email) => {
+    const userData = { name, email };
     firestore
-      .collection(userType)
-      .add({
-        userId,
-        name,
-        email
-      })
+      .collection(`${userType}s`)
+      .doc(uid)
+      .set(userData)
       .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
+        console.log("Document written with ID: ");
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
   };
 
-  login = event => {
+  login = async event => {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    firebase
+    await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(user => console.log(user.uid)) //not firing
       .catch(error => {
-        // Handle Errors here.
         console.log(error);
         this.setState({ error });
       });

@@ -1,5 +1,6 @@
 import React from "react";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 import { navigate } from "@reach/router";
 import StudioNav from "./StudioNav";
 
