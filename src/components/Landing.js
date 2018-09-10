@@ -1,11 +1,10 @@
 import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
-// import base from "../base";
+import { firestore } from "../firebase";
 import { navigate } from "@reach/router";
 
 import LoginOrSignUp from "./LoginOrSignUp";
-import { firestore } from "../base";
 
 class App extends React.Component {
   state = {
@@ -17,7 +16,7 @@ class App extends React.Component {
     userRef
       .get()
       .then(doc => {
-        const type = doc.data().userType;
+        const type = doc.data().usertype;
         navigate(`/${type}`);
       })
       .catch(error => {
@@ -28,8 +27,8 @@ class App extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        // const userType = localStorage.getItem("dancerNotesUserType");
-        // console.log("landing mount authchange", "userType= ", userType);
+        // const usertype = localStorage.getItem("dancerNotesUserType");
+        // console.log("landing mount authchange", "usertype= ", usertype);
         // look up in user in database to get type for routing
         this.routeByUserType(user.uid);
       }

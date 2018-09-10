@@ -3,13 +3,13 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import SignOutButton from "./SignOutButton";
-import { firestore } from "../base";
+import { firestore } from "../firebase";
 
 class LoginOrSignUp extends React.Component {
   state = {
     email: "",
     password: "",
-    userType: null,
+    usertype: null,
     error: null
   };
 
@@ -25,7 +25,7 @@ class LoginOrSignUp extends React.Component {
 
   handleTypeChange = radioEvent => {
     this.setState({
-      userType: radioEvent.target.value
+      usertype: radioEvent.target.value
     });
   };
 
@@ -33,16 +33,16 @@ class LoginOrSignUp extends React.Component {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    const userType = this.state.userType;
+    const usertype = this.state.usertype;
     const name = this.state.name;
     //1. register user  -> firebase
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
-        this.writeUserType(user.user.uid, userType, name, email);
-        this.writeUserData(user.user.uid, userType, name, email);
-        localStorage.setItem("dancerNotesUserType", userType);
+        this.writeUserType(user.user.uid, usertype, name, email);
+        this.writeUserData(user.user.uid, usertype, name, email);
+        localStorage.setItem("dancerNotesUserType", usertype);
       })
       .catch(error => {
         // Handle Errors here.
@@ -51,28 +51,28 @@ class LoginOrSignUp extends React.Component {
       });
   };
 
-  writeUserType = (uid, userType, name, email) => {
-    const userData = { name, email, userType, uid };
+  writeUserType = (uid, usertype, name, email) => {
+    const userData = { name, email, usertype, uid };
     firestore
       .collection(`users`)
       .doc(uid)
       .set(userData)
       .then(function(docRef) {
-        console.log("Document written with uID: ");
+        console.log("Document in users: ");
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
   };
 
-  writeUserData = (uid, userType, name, email) => {
+  writeUserData = (uid, usertype, name, email) => {
     const userData = { name, email };
     firestore
-      .collection(`${userType}s`)
+      .collection(`${usertype}s`)
       .doc(uid)
       .set(userData)
       .then(function(docRef) {
-        console.log("Document written with ID: ");
+        console.log(`Document written in ${usertype}s`);
       })
       .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -106,10 +106,10 @@ class LoginOrSignUp extends React.Component {
             <div className="pb2">
               <input
                 type="radio"
-                name="userType"
+                name="usertype"
                 id="parentRadio"
                 value="parent"
-                checked={this.state.userType === "parent"}
+                checked={this.state.usertype === "parent"}
                 onChange={this.handleTypeChange}
               />
               <label className="pl2 pr5" htmlFor="parentRadio">
@@ -117,10 +117,10 @@ class LoginOrSignUp extends React.Component {
               </label>
               <input
                 type="radio"
-                name="userType"
+                name="usertype"
                 id="studioRadio"
                 value="studio"
-                checked={this.state.userType === "studio"}
+                checked={this.state.usertype === "studio"}
                 onChange={this.handleTypeChange}
               />
               <label className="pl1 pr5" htmlFor="studioRadio">
@@ -148,7 +148,7 @@ class LoginOrSignUp extends React.Component {
               />
               <button
                 type="submit"
-                disabled={this.state.userType === null && !this.state.userType}
+                disabled={this.state.usertype === null && !this.state.usertype}
               >
                 Sign Up
               </button>

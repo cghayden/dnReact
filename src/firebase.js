@@ -1,4 +1,3 @@
-import Rebase from "re-base";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -32,12 +31,5 @@ firestore.settings({
   timestampsInSnapshots: true
 });
 
-//create an instance of re-base on firebaseApp(bindings)
-const base = Rebase.createClass(firestore);
-// firebaseApp.database() returns the actual database we have
-
 //named export
 export { firestore };
-
-// default export
-export default base;
