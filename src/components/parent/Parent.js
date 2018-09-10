@@ -3,7 +3,6 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { firestore } from "../../firebase";
 
 import { Router, navigate } from "@reach/router";
 
@@ -13,6 +12,7 @@ import ParentIndex from "./ParentIndex";
 import Routines from "./Routines";
 import Competitions from "./Competitions";
 import MyDancers from "./MyDancers";
+import Actions from "./Actions";
 
 import { loadUserData } from "../../scripts/helpers";
 
@@ -52,6 +52,7 @@ class Parent extends React.Component {
             <Routines path="routines" />
             <Competitions path="competitions" />
             <MyDancers path="dancers" />
+            <Actions path="actions/*" />
           </Router>
         </div>
       </UserContext.Provider>

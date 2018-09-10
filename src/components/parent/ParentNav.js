@@ -13,6 +13,7 @@ const ParentNav = props => (
       <Link to="routines">Routines</Link>
       <Link to="competitions">Competitions</Link>
       <Link to="dancers">My Dancers</Link>
+      <Link to="actions">Actions</Link>
       <SignOutButton />
     </nav>
   </div>

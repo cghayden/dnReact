@@ -66,7 +66,7 @@ class LoginOrSignUp extends React.Component {
   };
 
   writeUserData = (uid, usertype, name, email) => {
-    const userData = { name, email };
+    const userData = { name, email, uid };
     firestore
       .collection(`${usertype}s`)
       .doc(uid)
