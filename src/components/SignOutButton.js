@@ -1,9 +1,11 @@
 import React from "react";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 class SignOutButton extends React.Component {
   logout = async () => {
     console.log("logging out");
+    localStorage.removeItem("dancerNotesUserType");
     await firebase.auth().signOut();
   };
 

@@ -1,13 +1,15 @@
 import React from "react";
-import firebase from "firebase";
-
-import { firebaseApp } from "../base";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import SignOutButton from "./SignOutButton";
+import { firestore } from "../firebase";
 
 class LoginOrSignUp extends React.Component {
   state = {
     email: "",
     password: "",
-    userType: null,
+    usertype: null,
     error: null
   };
 
@@ -23,7 +25,7 @@ class LoginOrSignUp extends React.Component {
 
   handleTypeChange = radioEvent => {
     this.setState({
-      userType: radioEvent.target.value
+      usertype: radioEvent.target.value
     });
   };
 
@@ -31,41 +33,61 @@ class LoginOrSignUp extends React.Component {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    const userType = this.state.userType;
+    const usertype = this.state.usertype;
     const name = this.state.name;
     //1. register user  -> firebase
-    await firebaseApp
+    await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => this.writeUserData(user.uid, userType, name, email))
+      .then(user => {
+        this.writeUserType(user.user.uid, usertype, name, email);
+        this.writeUserData(user.user.uid, usertype, name, email);
+        localStorage.setItem("dancerNotesUserType", usertype);
+      })
       .catch(error => {
         // Handle Errors here.
         console.error(error);
         this.setState({ error });
       });
-    // localStorage.setItem("dnid", dnid);
   };
 
-  writeUserData = (userId, userType, name, email) => {
-    firebase
-      .database()
-      .ref(`users/${userId}`)
-      .set({
-        userType,
-        name,
-        email
+  writeUserType = (uid, usertype, name, email) => {
+    const userData = { name, email, usertype, uid };
+    firestore
+      .collection(`users`)
+      .doc(uid)
+      .set(userData)
+      .then(function(docRef) {
+        console.log("Document in users: ");
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
       });
   };
 
-  login = event => {
+  writeUserData = (uid, usertype, name, email) => {
+    const userData = { name, email };
+    firestore
+      .collection(`${usertype}s`)
+      .doc(uid)
+      .set(userData)
+      .then(function(docRef) {
+        console.log(`Document written in ${usertype}s`);
+      })
+      .catch(function(error) {
+        console.error("Error adding document: ", error);
+      });
+  };
+
+  login = async event => {
     event.preventDefault();
     const email = this.state.email;
     const password = this.state.password;
-    firebase
+    await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(user => console.log(user.uid)) //not firing
       .catch(error => {
-        // Handle Errors here.
         console.log(error);
         this.setState({ error });
       });
@@ -77,16 +99,17 @@ class LoginOrSignUp extends React.Component {
     return (
       <div>
         <div>
+          <SignOutButton />
           <h1>Create an Account</h1>
           {error && <p>{error.message}</p>}
           <form className="body" onSubmit={this.createAccount}>
             <div className="pb2">
               <input
                 type="radio"
-                name="userType"
+                name="usertype"
                 id="parentRadio"
                 value="parent"
-                checked={this.state.userType === "parent"}
+                checked={this.state.usertype === "parent"}
                 onChange={this.handleTypeChange}
               />
               <label className="pl2 pr5" htmlFor="parentRadio">
@@ -94,10 +117,10 @@ class LoginOrSignUp extends React.Component {
               </label>
               <input
                 type="radio"
-                name="userType"
+                name="usertype"
                 id="studioRadio"
                 value="studio"
-                checked={this.state.userType === "studio"}
+                checked={this.state.usertype === "studio"}
                 onChange={this.handleTypeChange}
               />
               <label className="pl1 pr5" htmlFor="studioRadio">
@@ -123,7 +146,12 @@ class LoginOrSignUp extends React.Component {
                 type="password"
                 placeholder="password"
               />
-              <button type="submit">Sign Up</button>
+              <button
+                type="submit"
+                disabled={this.state.usertype === null && !this.state.usertype}
+              >
+                Sign Up
+              </button>
             </div>
           </form>
         </div>

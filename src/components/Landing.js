@@ -1,9 +1,8 @@
 import React from "react";
-import firebase from "firebase";
-import base from "../base";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import { firestore } from "../firebase";
 import { navigate } from "@reach/router";
-
-import UserContext from "./UserContext";
 
 import LoginOrSignUp from "./LoginOrSignUp";
 
@@ -12,30 +11,32 @@ class App extends React.Component {
     userData: null
   };
 
-  getUserData = async uid => {
-    const userType = await base.fetch(`users/${uid}/userType`, {
-      context: this
-    });
-    navigate(`/${userType}`);
+  routeByUserType = async uid => {
+    const userRef = await firestore.collection("users").doc(uid);
+    userRef
+      .get()
+      .then(doc => {
+        const type = doc.data().usertype;
+        navigate(`/${type}`);
+      })
+      .catch(error => {
+        console.log("Error getting document:", error);
+      });
   };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        // look up in user in database and retieve data
-        this.getUserData(user.uid);
-        // navigate(`/parent`);
+        // const usertype = localStorage.getItem("dancerNotesUserType");
+        // console.log("landing mount authchange", "usertype= ", usertype);
+        // look up in user in database to get type for routing
+        this.routeByUserType(user.uid);
       }
     });
   }
 
   render() {
-    return (
-      <LoginOrSignUp />
-      // <UserContext.Provider value={userData}>
-      //   <UserTypeRouter />
-      // </UserContext.Provider>
-    );
+    return <LoginOrSignUp />;
   }
 }
 
