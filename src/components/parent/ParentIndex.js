@@ -6,9 +6,6 @@ class ParentIndex extends Component {
     return (
       <UserContext.Consumer>
         {user => {
-          {
-            /* console.log(user); */
-          }
           return (
             <div>
               <h2>Parent Home</h2>
