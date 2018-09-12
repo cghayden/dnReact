@@ -16,6 +16,8 @@ import Actions from "./Actions";
 
 import { loadUserData } from "../../scripts/helpers";
 
+import { loadUserData } from "../../scripts/helpers";
+
 class Parent extends React.Component {
   state = {
     user: {},
