@@ -12,14 +12,14 @@ class Actions extends Component {
             <ul>
               <li>
                 <Link to="addDancer">
-                  Add A Dancer To {user.name}
+                  Add A Dancer To {user.profile.name}
                   's Account
                 </Link>
               </li>
             </ul>
 
             <Router>
-              <AddDancerForm path="addDancer" parentId={user.uid} />
+              <AddDancerForm path="addDancer" parentId={user.profile.uid} />
             </Router>
           </div>
         )}

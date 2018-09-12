@@ -3,6 +3,7 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { firestore } from "../../firebase";
 
 import { Router, navigate } from "@reach/router";
 
@@ -16,13 +17,31 @@ import Actions from "./Actions";
 
 import { loadUserData } from "../../scripts/helpers";
 
-import { loadUserData } from "../../scripts/helpers";
-
 class Parent extends React.Component {
   state = {
     user: {},
     usertype: "parents",
-    error: null
+    error: null,
+    studio: {},
+    dancers: []
+  };
+
+  getStudioData = () => {
+    const docRef = this.state.user.studio;
+    // console.log("studio:", this.state.user.studio);
+    docRef.get().then(doc => this.setState({ studio: doc.data() }));
+  };
+
+  getDancerData = () => {
+    const dancers = this.state.user.dancers;
+    const dancerData = [];
+    for (const docRef of dancers) {
+      docRef.get().then(doc => {
+        dancerData.push(doc.data());
+      });
+    }
+    this.setState({ dancers: dancerData });
+    // console.log(dancers);
   };
 
   componentDidMount() {
@@ -31,7 +50,11 @@ class Parent extends React.Component {
       !user
         ? navigate("../")
         : loadUserData(user.uid, this.state.usertype)
-            .then(user => this.setState({ user }))
+            .then(user => {
+              this.setState({ user });
+              this.getStudioData();
+              this.getDancerData();
+            })
             .catch(error => {
               this.setState({ error });
               console.log("error getting user data", error);
@@ -40,7 +63,12 @@ class Parent extends React.Component {
   }
 
   render() {
-    const { user, error } = this.state;
+    const { error } = this.state;
+    const user = {
+      profile: this.state.user,
+      dancers: this.state.dancers,
+      studio: this.state.studio
+    };
 
     return (
       <UserContext.Provider value={user}>

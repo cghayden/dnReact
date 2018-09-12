@@ -2,14 +2,23 @@ import React, { Component } from "react";
 import UserContext from "../UserContext";
 
 class MyDancers extends Component {
+  state = { dancers: [{ firstname: "addie" }, { firstname: "ella" }] };
   render() {
+    // return (
+    //   <div>
+    //     {this.state.dancers.map(dancer => (
+    //       <p>{dancer.firstname}</p>
+    //     ))}
+    //   </div>
+    // );
     return (
       <UserContext.Consumer>
         {user => (
-          <h2>
-            {user.name}
-            's Dancers Info Here
-          </h2>
+          <div>
+            {user.dancers.map(dancer => {
+              return <p key={dancer.firstname}>{dancer.firstname}</p>;
+            })}
+          </div>
         )}
       </UserContext.Consumer>
     );
