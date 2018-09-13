@@ -19,7 +19,7 @@ import { loadUserData } from "../../scripts/helpers";
 class Parent extends React.Component {
   state = {
     user: {},
-    usertype: "parents",
+    dancers: [],
     error: null
   };
 
@@ -28,7 +28,7 @@ class Parent extends React.Component {
       // // if we get here, a user is logged in; when signout back out to Landing
       !user
         ? navigate("../")
-        : loadUserData(user.uid, this.state.usertype)
+        : loadUserData(user.uid, "parents")
             .then(user => this.setState({ user }))
             .catch(error => {
               this.setState({ error });
@@ -38,6 +38,7 @@ class Parent extends React.Component {
   }
 
   render() {
+    // const user = { name: "sample name" };
     const { user, error } = this.state;
 
     return (
