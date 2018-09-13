@@ -15,7 +15,7 @@ import Competitions from "./Competitions";
 import MyDancers from "./MyDancers";
 import Actions from "./Actions";
 
-import { loadUserData } from "../../scripts/helpers";
+import { loadUserData, hydrateDancerData } from "../../scripts/helpers";
 
 class Parent extends React.Component {
   state = {
@@ -51,6 +51,7 @@ class Parent extends React.Component {
         ? navigate("../")
         : loadUserData(user.uid, this.state.usertype)
             .then(user => {
+              hydrateDancerData(user);
               this.setState({ user });
               this.getStudioData();
               this.getDancerData();
