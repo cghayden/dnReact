@@ -15,16 +15,12 @@ export const loadUserData = async (uid, usertype) => {
 
 export const hydrateDancerData = async user => {
   const dancers = user.dancers;
-  // const dancerData = dancers.map(docRef =>
-  //   docRef.get().then(prom => prom.data())
-  // );
   const dancerData = [];
   for (const docRef of dancers) {
     let dancer = await docRef.get().then(res => res.data());
     dancerData.push(dancer);
   }
   console.log("dancerData:", dancerData);
-  // console.log(dancers);
 };
 
 export const firestoreTests = async (uid, usertype) => {
