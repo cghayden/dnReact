@@ -6,10 +6,16 @@ class MyDancers extends Component {
     return (
       <UserContext.Consumer>
         {user => (
-          <h2>
-            {user.name}
-            's Dancers Info Here
-          </h2>
+          <div>
+            <h2>
+              {user.name}
+              's Dancers Info Here
+            </h2>
+            {console.log(user.dancers)}
+            {user.dancers.map(dancer => {
+              return <p key={dancer.firstname}>{dancer.firstname}</p>;
+            })}
+          </div>
         )}
       </UserContext.Consumer>
     );

@@ -11,13 +11,6 @@ export const loadUserData = async (uid, usertype) => {
         doc =>
           doc.exists ? hydrateDancerData(doc.data()) : "No such document!"
       );
-    // .then(user => {
-    //   user.dancers = hydrateDancerData(user);
-
-    //   console.log("user", user);
-    //   return user;
-    // });
-    // .then(user => user);
   } catch (error) {
     return error;
   }
