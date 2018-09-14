@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import UserContext from "../UserContext";
 
 class MyDancers extends Component {
+  state = { dancers: [{ firstname: "addie" }, { firstname: "ella" }] };
   render() {
     return (
       <UserContext.Consumer>
@@ -11,7 +12,6 @@ class MyDancers extends Component {
               {user.name}
               's Dancers Info Here
             </h2>
-            {console.log(user.dancers)}
             {user.dancers.map(dancer => {
               return <p key={dancer.firstname}>{dancer.firstname}</p>;
             })}
