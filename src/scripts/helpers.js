@@ -7,7 +7,8 @@ export const loadUserData = async (uid, usertype) => {
     const docRef = await firestore.collection(usertype).doc(uid);
     return await docRef
       .get() //returns a DocumentSnapshot
-      .then(doc => hydrateDancerData(doc.data()));
+      .then(doc => doc.data())
+      .then(doc => (doc.dancerRefs ? hydrateDancerData(doc) : doc));
   } catch (error) {
     console.error("ohh Nooo!", error);
     return error;

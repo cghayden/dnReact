@@ -3,7 +3,14 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { firestore } from "../../firebase";
 
+import PropTypes from "prop-types";
+import { navigate } from "@reach/router";
+
 class AddDancerForm extends Component {
+  static propTypes = {
+    parentId: PropTypes.string.isRequired
+  };
+
   state = {
     firstname: "",
     lastname: "",
@@ -62,6 +69,7 @@ class AddDancerForm extends Component {
         console.error("error", error);
         this.setState({ error });
       });
+    navigate("../dancers");
   };
 
   render() {
