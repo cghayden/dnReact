@@ -35,6 +35,15 @@ class AddDancerForm extends Component {
       });
   };
 
+  addDancerDocRefToParent = async docRef => {
+    const parentRef = await firestore
+      .collection("parents")
+      .doc(this.props.parentId);
+    parentRef.update({
+      dancerRefs: firebase.firestore.FieldValue.arrayUnion(docRef)
+    });
+  };
+
   addDancer = async event => {
     event.preventDefault();
     const { firstname, lastname } = this.state;
@@ -42,14 +51,17 @@ class AddDancerForm extends Component {
       .collection("dancers")
       .add({ firstname, lastname })
       .then(docRef => {
-        console.log("doc written to dancer coll:", docRef.id);
-        this.addDancerToParent(docRef.id);
+        this.addDancerDocRefToParent(docRef);
+        console.log(
+          "doc written to dancerRefs coll with docRef.id of:",
+          docRef.id
+        );
+        // this.addDancerToParent(docRef.id);
       })
       .catch(error => {
         console.error("error", error);
         this.setState({ error });
       });
-    console.log("submitting:", firstname, lastname);
   };
 
   render() {

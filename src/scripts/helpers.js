@@ -7,24 +7,24 @@ export const loadUserData = async (uid, usertype) => {
     const docRef = await firestore.collection(usertype).doc(uid);
     return await docRef
       .get() //returns a DocumentSnapshot
-      .then(
-        doc =>
-          doc.exists ? hydrateDancerData(doc.data()) : "No such document!"
-      );
+      .then(doc => hydrateDancerData(doc.data()));
   } catch (error) {
+    console.error("ohh Nooo!", error);
     return error;
   }
 };
 
 export const hydrateDancerData = async user => {
-  const dancers = user.dancers;
-  const dancerData = [];
-  for (const docRef of dancers) {
-    let dancer = await docRef.get().then(res => res.data());
-    dancerData.push(dancer);
+  if (user.dancerRefs) {
+    const dancers = user.dancerRefs;
+    const dancerData = [];
+    for (const docRef of dancers) {
+      let dancer = await docRef.get().then(res => res.data());
+      dancerData.push(dancer);
+    }
+    user.dancers = dancerData;
+    console.log("new user", user);
   }
-  user.dancers = dancerData;
-  console.log("new user", user);
   return user;
 };
 
