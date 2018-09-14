@@ -3,6 +3,7 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { firestore } from "../../firebase";
 
 import { Router, navigate } from "@reach/router";
 
@@ -25,19 +26,35 @@ class Parent extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       // // if we get here, a user is logged in; when signout back out to Landing
-      !user
-        ? navigate("../")
-        : loadUserData(user.uid, "parents")
-            .then(user => this.setState({ user }))
-            .catch(error => {
-              this.setState({ error });
-              console.log("error getting user data", error);
-            });
+      if (!user) {
+        navigate("../");
+      } else {
+        const docRef = firestore.collection("parents").doc(user.uid);
+
+        // loadUserData(docRef)
+        //   .then(user => this.setState({ user }))
+        //   .catch(error => {
+        //     this.setState({ error });
+        //     console.log("error getting user data", error);
+        //   });
+
+        firestore
+          .collection("parents")
+          .doc(user.uid)
+          .onSnapshot(doc => {
+            console.log("Current data: ", doc.data());
+            loadUserData(docRef)
+              .then(user => this.setState({ user }))
+              .catch(error => {
+                this.setState({ error });
+                console.log("error getting user data", error);
+              });
+          });
+      }
     });
   }
 
   render() {
-    // const user = { name: "sample name" };
     const { user, error } = this.state;
 
     return (
@@ -63,7 +80,6 @@ class Parent extends React.Component {
 export default Parent;
 
 /*  TODO
-    add a dancer - write ref
 
     link / search for a studio or retailer by name or location
     
