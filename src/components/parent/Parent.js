@@ -3,7 +3,6 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import { firestore } from "../../firebase";
 
 import { Router, navigate } from "@reach/router";
 
@@ -20,7 +19,6 @@ import { loadUserData } from "../../scripts/helpers";
 class Parent extends React.Component {
   state = {
     user: {},
-    dancers: [],
     error: null
   };
 
@@ -65,13 +63,11 @@ class Parent extends React.Component {
 export default Parent;
 
 /*  TODO
-    add a dancer
+    add a dancer - write ref
 
-    link / search for a studio by name or location
+    link / search for a studio or retailer by name or location
     
-    user.dancers ? get dancer info
+    user.dancers:
       forEach routine in dancer, get routine info
-    
-    search for retail by name or location
-  
+      
   */

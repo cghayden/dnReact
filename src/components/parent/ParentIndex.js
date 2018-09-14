@@ -9,7 +9,7 @@ class ParentIndex extends Component {
           return (
             <div>
               <h2>Parent Home</h2>
-              {user.profile.name}
+              {user.name}
             </div>
           );
         }}

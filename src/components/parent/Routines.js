@@ -11,7 +11,7 @@ class Routines extends React.Component {
           {user => (
             <div className="content">
               <h1>
-                {user.profile.name}
+                {user.name}
                 's routines
               </h1>
               {/*render a DanceCard for each dance*/}

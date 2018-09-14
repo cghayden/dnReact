@@ -11,7 +11,7 @@ class Competitions extends React.Component {
           {user => (
             <div className="content">
               <h2>
-                {user.profile.name}
+                {user.name}
                 's Competitions
               </h2>
               <CompetitionCard />

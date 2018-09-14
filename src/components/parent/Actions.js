@@ -19,7 +19,7 @@ class Actions extends Component {
             </ul>
 
             <Router>
-              <AddDancerForm path="addDancer" parentId={user.profile.uid} />
+              <AddDancerForm path="addDancer" parentId={user.uid} />
             </Router>
           </div>
         )}
