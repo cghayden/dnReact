@@ -2,11 +2,19 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { firestore } from "../../firebase";
 
-import { navigate } from "@reach/router";
+import { Router, navigate } from "@reach/router";
+
+import { loadStudioData } from "../../scripts/helpers";
+import UserContext from "../UserContext";
 
 import StudioNav from "./StudioNav";
-import { loadUserData, firestoreTests } from "../../scripts/helpers";
+import StudioIndex from "./StudioIndex";
+import Classes from "./Classes";
+import Competitions from "./Competitions";
+import Dancers from "./Dancers";
+import StudioActions from "./StudioActions";
 
 class Studio extends React.Component {
   state = {
@@ -20,26 +28,44 @@ class Studio extends React.Component {
       if (!user) {
         navigate("../");
       } else {
-        loadUserData(user.uid, this.state.usertype)
-          .then(user => this.setState({ user }))
-          .catch(error => {
-            this.setState({ error });
-            console.log("error getting user data", error);
+        const studioRef = firestore.collection("studios").doc(user.uid);
+        console.log("studioRef", studioRef);
+
+        firestore
+          .collection("studios")
+          .doc(user.uid)
+          .onSnapshot(doc => {
+            console.log("Current data: ", doc.data());
+            loadStudioData(studioRef)
+              .then(user => this.setState({ user }))
+              .catch(error => {
+                this.setState({ error });
+                console.log("error getting user data", error);
+              });
           });
-        firestoreTests(user.uid, this.state.usertype);
       }
     });
   }
 
   render() {
+    const { user, error } = this.state;
+
     return (
-      <div>
-        <StudioNav />
-        <h1>
-          {this.state.user.name}
-          's home page
-        </h1>
-      </div>
+      <UserContext.Provider value={user}>
+        <div>
+          <h1> Studio's page </h1>
+          {error && <p>{error.message}</p>}
+          <StudioNav />
+
+          <Router>
+            <StudioIndex path="/" />
+            <Dancers path="dancers" />
+            <Classes path="classes" />
+            <Competitions path="competitions" />
+            <StudioActions path="actions/*" />
+          </Router>
+        </div>
+      </UserContext.Provider>
     );
   }
 }

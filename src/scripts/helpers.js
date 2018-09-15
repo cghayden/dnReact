@@ -2,19 +2,26 @@
 import { firestore } from "../firebase";
 import "firebase/firestore";
 
-// export const handleSnapshot = async snap => {
-//   await snap
-//     .data()
-//     .then(doc => (doc.dancerRefs ? hydrateDancerData(doc) : doc));
-// };
-
-export const loadUserData = async docRef => {
+export const loadParentData = async docRef => {
   try {
-    // const docRef = await firestore.collection(usertype).doc(uid);
     return await docRef
       .get() //returns a DocumentSnapshot
-      .then(snap => snap.data()) //load user data should go here
+      .then(snap => snap.data())
       .then(doc => (doc.dancerRefs ? hydrateDancerData(doc) : doc));
+  } catch (error) {
+    console.error("ohh Nooo!", error);
+    return error;
+  }
+};
+
+export const loadStudioData = async docRef => {
+  try {
+    return await docRef
+      .get() //returns a DocumentSnapshot
+      // .then(snapshot => console.log("snapshot", snapshot.data()))
+      .then(snapshot => snapshot.data())
+      .then(data => data);
+    // .then(doc => (doc.routineRefs ? hydrateRoutineData(doc) : doc));
   } catch (error) {
     console.error("ohh Nooo!", error);
     return error;

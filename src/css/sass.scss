@@ -12,6 +12,15 @@ html {
   height: 100%; // to keep footer pushed down
 }
 
+p {
+  font-size: 1.5em;
+}
+
+button {
+  font-size: 1em;
+  padding: 1em 2em;
+}
+
 body {
   color: $white;
   background: $black;

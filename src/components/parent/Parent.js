@@ -15,7 +15,7 @@ import Competitions from "./Competitions";
 import MyDancers from "./MyDancers";
 import Actions from "./Actions";
 
-import { loadUserData } from "../../scripts/helpers";
+import { loadParentData } from "../../scripts/helpers";
 
 class Parent extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class Parent extends React.Component {
       } else {
         const docRef = firestore.collection("parents").doc(user.uid);
 
-        // loadUserData(docRef)
+        // loadParentData(docRef)
         //   .then(user => this.setState({ user }))
         //   .catch(error => {
         //     this.setState({ error });
@@ -43,7 +43,7 @@ class Parent extends React.Component {
           .doc(user.uid)
           .onSnapshot(doc => {
             console.log("Current data: ", doc.data());
-            loadUserData(docRef)
+            loadParentData(docRef)
               .then(user => this.setState({ user }))
               .catch(error => {
                 this.setState({ error });

@@ -1,28 +1,18 @@
 import React from "react";
 
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 import SignOutButton from "../SignOutButton";
-import StudioHome from "./StudioHome";
-import StudioCompetitions from "./StudioCompetitions";
-import Classes from "./Classes";
-import Students from "./Students";
 
 const StudioNav = props => (
   <div>
-    <div className="parentNav">
-      <SignOutButton />
-    </div>
-    <nav>
-      <Link to="students">Students</Link>
+    <nav className="nav pv3">
+      <Link to="./">Home</Link>
       <Link to="classes">Classes</Link>
+      <Link to="dancers">Dancers</Link>
       <Link to="competitions">Competitions</Link>
+      <Link to="actions">Actions</Link>
+      <SignOutButton />
     </nav>
-    <Router>
-      <StudioHome path="/" />
-      <Classes path="classes" />
-      <StudioCompetitions path="competitions" />
-      <Students path="students" />
-    </Router>
   </div>
 );
 
