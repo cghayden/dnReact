@@ -42,7 +42,7 @@ class Login extends Component {
           <h1 className="pb3">Sign in</h1>
           {error && <p>{error.message}</p>}
           <div>
-            <label for="email-login">Email</label>
+            <label htmlFor="email-login">Email</label>
             <input
               id="email-login"
               name="email"
@@ -51,7 +51,7 @@ class Login extends Component {
             />
           </div>
           <div>
-            <label for="login-password">Password</label>
+            <label htmlFor="login-password">Password</label>
             <input
               id="login-password"
               name="password"

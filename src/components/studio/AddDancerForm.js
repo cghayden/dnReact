@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import * as firebase from "firebase/app";
-import "firebase/firestore";
-import { firestore } from "../../firebase";
+// import * as firebase from "firebase/app";
+// import "firebase/firestore";
+// import { firestore } from "../../firebase";
 
 import PropTypes from "prop-types";
 import { navigate } from "@reach/router";
@@ -37,7 +37,7 @@ class AddDancerForm extends Component {
 
   addDancer = async event => {
     event.preventDefault();
-    const { firstname, lastname } = this.state;
+    // const { firstname, lastname } = this.state;
     console.log("addDancer form submission called");
     navigate("../dancers");
   };

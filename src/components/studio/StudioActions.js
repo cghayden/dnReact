@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 import AddDancerForm from "./AddDancerForm";
 import UserContext from "../UserContext";
-import { navigate } from "@reach/router/lib/history";
+// import { navigate } from "@reach/router/lib/history";
 
 class StudioActions extends Component {
   render() {

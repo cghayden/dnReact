@@ -7,9 +7,9 @@ import { firestore } from "../firebase";
 class SignUp extends Component {
   state = {
     error: null,
+    password: "",
     name: "",
-    email: "",
-    password: ""
+    email: ""
   };
 
   handleInputChange = event => {
@@ -30,17 +30,35 @@ class SignUp extends Component {
 
   createAccount = async event => {
     event.preventDefault();
-    const email = this.state.email;
-    const password = this.state.password;
-    const usertype = this.state.usertype;
-    const name = this.state.name;
+    const address = {
+      streetNumber: this.state.street_number,
+      street: this.state.route,
+      city: this.state.locality,
+      state: this.state.administrative_area_level_1,
+      zip: this.state.postal_code
+    };
+    const { password, usertype, name, email, lat, lng } = this.state;
+    // const email = this.state.email;
+    // const password = this.state.password;
+    // const usertype = this.state.usertype;
+    // const name = this.state.name;
+    // const lat = this.state.lat;
+    // const lng = this.state.lng;
     //1. register user  -> firebase
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
         this.writeUserType(user.user.uid, usertype, name, email);
-        this.writeUserData(user.user.uid, usertype, name, email);
+        this.writeUserData(
+          user.user.uid,
+          usertype,
+          name,
+          email,
+          address,
+          lat,
+          lng
+        );
         localStorage.setItem("dancerNotesUserType", usertype);
       })
       .catch(error => {
@@ -64,8 +82,9 @@ class SignUp extends Component {
       });
   };
 
-  writeUserData = (uid, usertype, name, email) => {
-    const userData = { name, email, uid };
+  writeUserData = (uid, usertype, name, email, address, lat, lng) => {
+    const location = new firebase.firestore.GeoPoint(lat, lng);
+    const userData = { name, email, uid, address, location };
     firestore
       .collection(`${usertype}s`)
       .doc(uid)
@@ -76,6 +95,69 @@ class SignUp extends Component {
       .catch(function(error) {
         console.error("Error adding document: ", error);
       });
+  };
+
+  componentDidMount() {
+    if (!window.google) {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyD6U6TbwQC4hiPxDc-RfKglqSuS_EsmsjU&libraries=places`;
+      var x = document.getElementsByTagName("script")[0];
+      x.parentNode.insertBefore(s, x);
+      // Below is important.
+      //We cannot access google.maps until it's finished loading
+      s.addEventListener("load", e => {
+        this.onScriptLoad();
+      });
+    } else {
+      this.onScriptLoad();
+    }
+  }
+  onScriptLoad = () => {
+    this.initAutocomplete();
+  };
+
+  initAutocomplete = () => {
+    var autocomplete;
+    var componentForm = {
+      street_number: "short_name",
+      route: "long_name",
+      locality: "long_name",
+      administrative_area_level_1: "short_name",
+      // country: "long_name",
+      postal_code: "short_name"
+    };
+    autocomplete = new window.google.maps.places.Autocomplete(
+      document.getElementById("autocomplete")
+    );
+
+    // When the user selects an address from the dropdown, populate the address fields in the form.
+    autocomplete.addListener("place_changed", () => {
+      // Get the place details from the autocomplete object.
+      var place = autocomplete.getPlace();
+      console.log("place", place);
+      const lat = place.geometry.location.lat();
+      const lng = place.geometry.location.lng();
+      const latLng = new window.google.maps.LatLng(lat, lng);
+      this.setState({ lat, lng, latLng });
+
+      //traverse keys:
+      for (var component in componentForm) {
+        document.getElementById(component).value = "";
+        document.getElementById(component).disabled = false;
+      }
+      // Get each component of the address from the place details
+      // and fill the corresponding field on the form.
+      place.address_components.forEach(component => {
+        var addressType = component.types[0];
+        console.log("addressType:", addressType);
+        if (componentForm[addressType]) {
+          var val = component[componentForm[addressType]];
+          document.getElementById(addressType).value = val;
+          this.setState({ [addressType]: val });
+        }
+      });
+    });
   };
 
   render() {
@@ -139,6 +221,63 @@ class SignUp extends Component {
               onChange={this.handleInputChange}
               type="password"
             />
+          </div>
+
+          <div className="geolocate">
+            <div>
+              <label>Address</label>
+              <input
+                id="autocomplete"
+                name="address"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
+            <div>
+              <label>Number</label>
+              <input
+                id="street_number"
+                name="street_number"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
+            <div>
+              <label>Route</label>
+              <input
+                id="route"
+                name="route"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
+            <div>
+              <label>City</label>
+              <input
+                id="locality"
+                name="locality"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
+            <div>
+              <label>State</label>
+              <input
+                id="administrative_area_level_1"
+                name="administrative_area_level_1"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
+            <div>
+              <label>Zip Code</label>
+              <input
+                id="postal_code"
+                name="postal_code"
+                onChange={this.handleInputChange}
+                type="text"
+              />
+            </div>
           </div>
 
           <div className="form-footer">

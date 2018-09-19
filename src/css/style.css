@@ -158,6 +158,9 @@ body:not(:-moz-handler-blocked) fieldset {
   .fieldset-body label {
     display: inline; }
 
+.geolocate {
+  background: darkslategray; }
+
 .nav {
   background: #222244;
   color: #f1f1f9;

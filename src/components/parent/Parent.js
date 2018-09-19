@@ -14,7 +14,7 @@ import Routines from "./Routines";
 import Competitions from "./Competitions";
 import MyDancers from "./MyDancers";
 import Actions from "./Actions";
-import Materialui from "./Materialui";
+import Sketchpad from "./Sketchpad";
 
 import { loadParentData } from "../../scripts/helpers";
 
@@ -71,7 +71,7 @@ class Parent extends React.Component {
             <Competitions path="competitions" />
             <MyDancers path="dancers" />
             <Actions path="actions/*" />
-            <Materialui path="material-ui" />
+            <Sketchpad path="sketchpad" />
           </Router>
         </div>
       </UserContext.Provider>

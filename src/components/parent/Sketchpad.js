@@ -1,15 +1,15 @@
 import React, { Fragment, Component } from "react";
 
-class Materialui extends Component {
+class Sketchpad extends Component {
   render() {
     return (
       <Fragment>
         <div>
-          <p>playground</p>
+          <p>Sketchpad</p>
         </div>
       </Fragment>
     );
   }
 }
 
-export default Materialui;
+export default Sketchpad;
