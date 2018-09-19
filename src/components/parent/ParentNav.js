@@ -14,6 +14,7 @@ const ParentNav = props => (
       <Link to="competitions">Competitions</Link>
       <Link to="dancers">My Dancers</Link>
       <Link to="actions">Actions</Link>
+      <Link to="material-ui">Material-ui</Link>
       <SignOutButton />
     </nav>
   </div>

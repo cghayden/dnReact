@@ -3,6 +3,7 @@ import "./css/tachyons/spacing.css";
 import "./css/tachyons/text-align.css";
 import "./css/normalize.css";
 import "./css/style.css";
+// import "bulma/css/bulma.css";
 
 import { Router } from "@reach/router";
 import React from "react";
