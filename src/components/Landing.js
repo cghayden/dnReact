@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { firestore } from "../firebase";
 import { navigate } from "@reach/router";
+import LandingNav from "./LandingNav";
 
-import LoginOrSignUp from "./LoginOrSignUp";
+// import LoginOrSignUp from "./LoginOrSignUp";
 
-class App extends React.Component {
+class Landing extends Component {
   state = {
     userData: null
   };
@@ -28,7 +29,6 @@ class App extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         // const usertype = localStorage.getItem("dancerNotesUserType");
-        // console.log("landing mount authchange", "usertype= ", usertype);
         // look up in user in database to get type for routing
         this.routeByUserType(user.uid);
       }
@@ -36,8 +36,15 @@ class App extends React.Component {
   }
 
   render() {
-    return <LoginOrSignUp />;
+    return (
+      <Fragment>
+        <LandingNav />
+        <div className="content">
+          <h1>Welcome to DancerNotes...</h1>
+        </div>
+      </Fragment>
+    );
   }
 }
 
-export default App;
+export default Landing;

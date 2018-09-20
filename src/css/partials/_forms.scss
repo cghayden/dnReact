@@ -1,23 +1,26 @@
+.login,
+.signup {
+  max-width: 500px;
+}
+
 .form-control {
-  // border: 2px solid white;
   width: 90%;
   margin: auto;
-  max-width: 500px;
   label {
     display: block;
-    padding-top: 0.5rem;
   }
   input {
     padding: 0.3rem 0.5rem;
     margin-bottom: 1rem;
     font-size: 1.3rem;
     width: 95%;
+    box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
   }
   input[type="radio"] {
     width: 20px;
   }
   button {
-    color: $black;
+    color: $primaryText;
     margin-bottom: 1.5rem;
     padding: 0.75rem 2rem;
     width: 70%;
@@ -27,9 +30,12 @@
 }
 
 .form-footer {
-  // background-color: grey;
   display: flex;
   justify-content: space-around;
+}
+.form-header {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
 }
 legend {
   text-align: center;
@@ -41,6 +47,7 @@ legend {
   }
 }
 
+/*for radio buttons...*/
 fieldset {
   border: 0;
   padding: 0.01em 0 0 0;
@@ -60,7 +67,11 @@ body:not(:-moz-handler-blocked) fieldset {
     display: inline;
   }
 }
+/* end radio button style */
 
-.geolocate {
-  background: darkslategray;
-}
+// label {
+//   float: left;
+//   text-align: right;
+//   margin-right: 15px;
+//   width: 100px;
+// }

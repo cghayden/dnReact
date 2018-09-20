@@ -15,7 +15,7 @@ import Studio from "./components/studio/Studio";
 
 render(
   <Router>
-    <Landing path="/" />
+    <Landing path="/*" />
     <Parent path="/parent/*" />
     <Studio path="/studio/*" />
   </Router>,

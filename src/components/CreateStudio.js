@@ -3,10 +3,12 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { firestore } from "../firebase";
+import ScrollUp from "./ScrollUp";
 
-class SignUp extends Component {
+class CreateStudio extends Component {
   state = {
     error: null,
+    usertype: "studio",
     password: "",
     name: "",
     email: ""
@@ -22,11 +24,11 @@ class SignUp extends Component {
     });
   };
 
-  handleTypeChange = radioEvent => {
-    this.setState({
-      usertype: radioEvent.target.value
-    });
-  };
+  // handleTypeChange = radioEvent => {
+  //   this.setState({
+  //     usertype: radioEvent.target.value
+  //   });
+  // };
 
   createAccount = async event => {
     event.preventDefault();
@@ -157,135 +159,115 @@ class SignUp extends Component {
   render() {
     const { error } = this.state;
     return (
-      <div className="form-control">
-        <form onSubmit={this.createAccount}>
-          <h1 className="pb3">Create an Account</h1>
-          {error && <p>{error.message}</p>}
-          <fieldset>
-            <legend>
-              <p>UserType</p>
-            </legend>
-            <div className="fieldset-body">
-              <div>
-                <input
-                  type="radio"
-                  name="usertype"
-                  id="parentRadio"
-                  value="parent"
-                  checked={this.state.usertype === "parent"}
-                  onChange={this.handleTypeChange}
-                />
-                <label className="pl2 pr5" htmlFor="parentRadio">
-                  Parent
-                </label>
+      <ScrollUp>
+        <div className="content">
+          <div className="container container-single signup">
+            <form className="form-control" onSubmit={this.createAccount}>
+              <div className="form-header">
+                <h1 className="pb3">Create a Studio Account</h1>
               </div>
+              {error && <p>{error.message}</p>}
+
               <div>
+                <label>Name</label>
                 <input
-                  type="radio"
-                  name="usertype"
-                  id="studioRadio"
-                  value="studio"
-                  checked={this.state.usertype === "studio"}
-                  onChange={this.handleTypeChange}
+                  type="text"
+                  name="name"
+                  onChange={this.handleInputChange}
                 />
-                <label className="pl1 pr5" htmlFor="studioRadio">
-                  Studio
-                </label>
               </div>
-            </div>
-          </fieldset>
-          <div>
-            <label>Name</label>
-            <input type="text" name="name" onChange={this.handleInputChange} />
-          </div>
 
-          <div>
-            <label>Email</label>
-            <input
-              name="email"
-              type="email"
-              onChange={this.handleInputChange}
-            />
-          </div>
+              <div>
+                <label>Email</label>
+                <input
+                  name="email"
+                  type="email"
+                  onChange={this.handleInputChange}
+                />
+              </div>
 
-          <div>
-            <label>Password</label>
-            <input
-              name="password"
-              onChange={this.handleInputChange}
-              type="password"
-            />
-          </div>
+              <div>
+                <label>Password</label>
+                <input
+                  name="password"
+                  onChange={this.handleInputChange}
+                  type="password"
+                />
+              </div>
 
-          <div className="geolocate">
-            <div>
-              <label>Address</label>
-              <input
-                id="autocomplete"
-                name="address"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <label>Number</label>
-              <input
-                id="street_number"
-                name="street_number"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <label>Route</label>
-              <input
-                id="route"
-                name="route"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <label>City</label>
-              <input
-                id="locality"
-                name="locality"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <label>State</label>
-              <input
-                id="administrative_area_level_1"
-                name="administrative_area_level_1"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <label>Zip Code</label>
-              <input
-                id="postal_code"
-                name="postal_code"
-                onChange={this.handleInputChange}
-                type="text"
-              />
-            </div>
-          </div>
+              <div className="geolocate">
+                <div>
+                  <label>Address</label>
+                  <input
+                    id="autocomplete"
+                    name="address"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>Number</label>
+                  <input
+                    id="street_number"
+                    name="street_number"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>Route</label>
+                  <input
+                    id="route"
+                    name="route"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>City</label>
+                  <input
+                    id="locality"
+                    name="locality"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>State</label>
+                  <input
+                    id="administrative_area_level_1"
+                    name="administrative_area_level_1"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label>Zip Code</label>
+                  <input
+                    id="postal_code"
+                    name="postal_code"
+                    onChange={this.handleInputChange}
+                    type="text"
+                  />
+                </div>
+              </div>
 
-          <div className="form-footer">
-            <button
-              type="submit"
-              disabled={this.state.usertype === null && !this.state.usertype}
-            >
-              Sign Up
-            </button>
+              <div className="form-footer">
+                <button
+                  type="submit"
+                  disabled={
+                    this.state.usertype === null && !this.state.usertype
+                  }
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
+        </div>
+      </ScrollUp>
     );
   }
 }
 
-export default SignUp;
+export default CreateStudio;
