@@ -127,6 +127,9 @@ a {
     font-size: 1.4rem;
     border-radius: 3px; }
 
+.form-field input {
+  border-radius: 5px; }
+
 .form-footer {
   display: flex;
   justify-content: space-around; }
@@ -235,6 +238,9 @@ body:not(:-moz-handler-blocked) fieldset {
   justify-items: center;
   grid-gap: 20px; }
 
+.category-list {
+  background-color: lightcoral; }
+
 html {
   height: 100%; }
 
@@ -259,7 +265,8 @@ body {
 
 .container {
   background-color: #f7f7f7;
-  border-radius: 10px; }
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2); }
 
 .container-single {
   margin: auto; }

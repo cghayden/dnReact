@@ -168,7 +168,7 @@ class CreateStudio extends Component {
               </div>
               {error && <p>{error.message}</p>}
 
-              <div>
+              <div className="form-field">
                 <label>Name</label>
                 <input
                   type="text"
@@ -177,7 +177,7 @@ class CreateStudio extends Component {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Email</label>
                 <input
                   name="email"
@@ -186,7 +186,7 @@ class CreateStudio extends Component {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Password</label>
                 <input
                   name="password"
@@ -195,61 +195,59 @@ class CreateStudio extends Component {
                 />
               </div>
 
-              <div className="geolocate">
-                <div>
-                  <label>Address</label>
-                  <input
-                    id="autocomplete"
-                    name="address"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label>Number</label>
-                  <input
-                    id="street_number"
-                    name="street_number"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label>Route</label>
-                  <input
-                    id="route"
-                    name="route"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label>City</label>
-                  <input
-                    id="locality"
-                    name="locality"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label>State</label>
-                  <input
-                    id="administrative_area_level_1"
-                    name="administrative_area_level_1"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
-                <div>
-                  <label>Zip Code</label>
-                  <input
-                    id="postal_code"
-                    name="postal_code"
-                    onChange={this.handleInputChange}
-                    type="text"
-                  />
-                </div>
+              <div className="form-field">
+                <label>Address</label>
+                <input
+                  id="autocomplete"
+                  name="address"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
+              </div>
+              <div className="form-field">
+                <label>Number</label>
+                <input
+                  id="street_number"
+                  name="street_number"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
+              </div>
+              <div className="form-field">
+                <label>Route</label>
+                <input
+                  id="route"
+                  name="route"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
+              </div>
+              <div className="form-field">
+                <label>City</label>
+                <input
+                  id="locality"
+                  name="locality"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
+              </div>
+              <div className="form-field">
+                <label>State</label>
+                <input
+                  id="administrative_area_level_1"
+                  name="administrative_area_level_1"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
+              </div>
+              <div className="form-field">
+                <label>Zip Code</label>
+                <input
+                  id="postal_code"
+                  name="postal_code"
+                  onChange={this.handleInputChange}
+                  type="text"
+                />
               </div>
 
               <div className="form-footer">

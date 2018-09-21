@@ -6,6 +6,7 @@
 @import "partials/footer";
 @import "partials/forms";
 @import "partials/nav";
+@import "partials/studioCatalog";
 
 html {
   height: 100%; // to keep footer pushed down
@@ -44,6 +45,7 @@ body {
 .container {
   background-color: $white;
   border-radius: 10px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .container-single {

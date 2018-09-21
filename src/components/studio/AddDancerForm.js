@@ -7,9 +7,9 @@ import PropTypes from "prop-types";
 import { navigate } from "@reach/router";
 
 class AddDancerForm extends Component {
-  static propTypes = {
-    studioId: PropTypes.string.isRequired
-  };
+  // static propTypes = {
+  //   studioId: PropTypes.string.isRequired
+  // };
 
   state = {
     firstname: "",

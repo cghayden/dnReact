@@ -29,13 +29,13 @@ class Studio extends React.Component {
         navigate("../");
       } else {
         const studioRef = firestore.collection("studios").doc(user.uid);
-        console.log("studioRef", studioRef);
+        // console.log("studioRef", studioRef);
 
         firestore
           .collection("studios")
           .doc(user.uid)
           .onSnapshot(doc => {
-            console.log("Current data: ", doc.data());
+            // console.log("Current data: ", doc.data());
             loadStudioData(studioRef)
               .then(user => this.setState({ user }))
               .catch(error => {
