@@ -3,6 +3,7 @@ import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { firestore } from "../../firebase";
 
 import { Router, navigate } from "@reach/router";
 
@@ -13,27 +14,44 @@ import Routines from "./Routines";
 import Competitions from "./Competitions";
 import MyDancers from "./MyDancers";
 import Actions from "./Actions";
+import Sketchpad from "./Sketchpad";
 
-import { loadUserData } from "../../scripts/helpers";
+import { loadParentData } from "../../scripts/helpers";
 
 class Parent extends React.Component {
   state = {
     user: {},
-    usertype: "parents",
     error: null
   };
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       // // if we get here, a user is logged in; when signout back out to Landing
-      !user
-        ? navigate("../")
-        : loadUserData(user.uid, this.state.usertype)
-            .then(user => this.setState({ user }))
-            .catch(error => {
-              this.setState({ error });
-              console.log("error getting user data", error);
-            });
+      if (!user) {
+        navigate("../");
+      } else {
+        const docRef = firestore.collection("parents").doc(user.uid);
+
+        // loadParentData(docRef)
+        //   .then(user => this.setState({ user }))
+        //   .catch(error => {
+        //     this.setState({ error });
+        //     console.log("error getting user data", error);
+        //   });
+
+        firestore
+          .collection("parents")
+          .doc(user.uid)
+          .onSnapshot(doc => {
+            console.log("Current data: ", doc.data());
+            loadParentData(docRef)
+              .then(user => this.setState({ user }))
+              .catch(error => {
+                this.setState({ error });
+                console.log("error getting user data", error);
+              });
+          });
+      }
     });
   }
 
@@ -53,6 +71,7 @@ class Parent extends React.Component {
             <Competitions path="competitions" />
             <MyDancers path="dancers" />
             <Actions path="actions/*" />
+            <Sketchpad path="sketchpad" />
           </Router>
         </div>
       </UserContext.Provider>
@@ -63,13 +82,10 @@ class Parent extends React.Component {
 export default Parent;
 
 /*  TODO
-    add a dancer
 
-    link / search for a studio by name or location
+    link / search for a studio or retailer by name or location
     
-    user.dancers ? get dancer info
+    user.dancers:
       forEach routine in dancer, get routine info
-    
-    search for retail by name or location
-  
+      
   */

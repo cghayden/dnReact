@@ -3,6 +3,7 @@ import "./css/tachyons/spacing.css";
 import "./css/tachyons/text-align.css";
 import "./css/normalize.css";
 import "./css/style.css";
+// import "bulma/css/bulma.css";
 
 import { Router } from "@reach/router";
 import React from "react";
@@ -14,7 +15,7 @@ import Studio from "./components/studio/Studio";
 
 render(
   <Router>
-    <Landing path="/" />
+    <Landing path="/*" />
     <Parent path="/parent/*" />
     <Studio path="/studio/*" />
   </Router>,

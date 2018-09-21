@@ -8,12 +8,13 @@ import SignOutButton from "../SignOutButton";
 
 const ParentNav = props => (
   <div>
-    <nav className="parentNav pv3 ">
+    <nav className="nav pv3 ">
       <Link to="./">Home</Link>
       <Link to="routines">Routines</Link>
       <Link to="competitions">Competitions</Link>
       <Link to="dancers">My Dancers</Link>
       <Link to="actions">Actions</Link>
+      <Link to="sketchpad">SketchPad</Link>
       <SignOutButton />
     </nav>
   </div>

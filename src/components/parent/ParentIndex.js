@@ -7,9 +7,9 @@ class ParentIndex extends Component {
       <UserContext.Consumer>
         {user => {
           return (
-            <div>
+            <div className="pv2">
               <h2>Parent Home</h2>
-              {user.name}
+              <p className="pv2">{user.name}</p>
             </div>
           );
         }}
