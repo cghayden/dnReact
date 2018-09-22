@@ -288,6 +288,9 @@ body {
 .container-single {
   margin: auto; }
 
+.text-small {
+  font-size: 0.75rem; }
+
 .card {
   display: grid;
   grid-template-columns: 1fr;
@@ -298,5 +301,17 @@ body {
   padding: 1rem 0; }
   .card .dance-value {
     padding-right: 5px; }
+
+.list-footer {
+  border-top: 2px solid #615aaf;
+  margin-bottom: 1rem; }
+  .list-footer label {
+    display: block;
+    text-align: left; }
+  .list-footer button {
+    background-color: lightcoral;
+    font-size: 0.7rem;
+    padding: 0.75rem 0.65rem;
+    border-radius: 50%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -18,8 +18,9 @@ class ClassCategories extends Component {
                   Object.keys(user.classCategories).map(cat => (
                     <CategoryList
                       key={cat}
-                      title={cat}
+                      category={cat}
                       items={user.classCategories[cat]}
+                      uid={user.uid}
                     />
                   ))}
               </div>

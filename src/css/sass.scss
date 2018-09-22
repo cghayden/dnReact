@@ -56,9 +56,9 @@ body {
   margin: auto;
 }
 
-// .container-header {
-
-// }
+.text-small {
+  font-size: 0.75rem;
+}
 
 .card {
   display: grid;
@@ -71,5 +71,20 @@ body {
   padding: 1rem 0;
   .dance-value {
     padding-right: 5px;
+  }
+}
+
+.list-footer {
+  border-top: 2px solid $border-blue;
+  margin-bottom: 1rem;
+  label {
+    display: block;
+    text-align: left;
+  }
+  button {
+    background-color: lightcoral;
+    font-size: 0.7rem;
+    padding: 0.75rem 0.65rem;
+    border-radius: 50%;
   }
 }
