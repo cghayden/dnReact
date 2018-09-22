@@ -31,7 +31,6 @@ body {
 
 //wrap everything below nav for the anchored footer
 .content {
-  padding-top: 2rem;
   padding-bottom: 80px;
   background-color: $bodyBackground;
   // text-align: center; //height of footer
@@ -41,16 +40,25 @@ body {
   // justify-items: center;
   // grid-gap: 20px;
 }
-
+.content {
+  text-align: center;
+}
 .container {
   background-color: $white;
   border-radius: 10px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
+.container-header {
+  text-align: center;
+}
 
 .container-single {
   margin: auto;
 }
+
+// .container-header {
+
+// }
 
 .card {
   display: grid;

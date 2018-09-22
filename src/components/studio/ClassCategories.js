@@ -8,42 +8,21 @@ class ClassCategories extends Component {
         {user => (
           <div className="container">
             <div className="categories">
-              <h1>Class Categories</h1>
-
-              {/* wait for user to be loaded into provider... */}
-              {user.classCategories &&
-                console.log(Object.keys(user.classCategories))}
-              {/* for each category in categories, render CategoryList */}
-              {user.classCategories &&
-                Object.keys(user.classCategories).map(cat => (
-                  <CategoryList
-                    key={cat}
-                    title={cat}
-                    items={user.classCategories[cat]}
-                  />
-                ))}
-
-              {/* <div className="category-list">
-                <section>
-                  <h2>Levels</h2>
-                  <ul>
-                    <li>Recreational</li>
-                    <li>Mini Company</li>
-                    <li>Junior Company</li>
-                  </ul>
-                </section>
+              <div className="container-header">
+                <h1>Class Categories</h1>
               </div>
-
-              <div className="category-list">
-                <section>
-                  <h2>Styles</h2>
-                  <ul>
-                    <li>Jazz</li>
-                    <li>Lyric</li>
-                    <li>Hip Hop</li>
-                  </ul>
-                </section>
-              </div> */}
+              <div className="categories-body">
+                {/* wait for user to be loaded into provider... && */}
+                {/* for each category in categories, render CategoryList */}
+                {user.classCategories &&
+                  Object.keys(user.classCategories).map(cat => (
+                    <CategoryList
+                      key={cat}
+                      title={cat}
+                      items={user.classCategories[cat]}
+                    />
+                  ))}
+              </div>
             </div>
           </div>
         )}

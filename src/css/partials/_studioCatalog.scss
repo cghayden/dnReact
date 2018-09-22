@@ -1,3 +1,17 @@
+.categories {
+  width: 80%;
+  margin: auto;
+}
+
+.categories-body {
+  display: flex;
+  justify-content: space-between;
+}
+
 .category-list {
-  background-color: lightcoral;
+  background-color: $grey-on-white;
+  border-top: 5px solid $border-blue;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  width: 320px;
+  margin: 1rem;
 }

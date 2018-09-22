@@ -6,14 +6,13 @@ class CategoryList extends Component {
     return (
       <div className="category-list">
         <section>
-          <h2>{this.props.title}</h2>
+          <div className="list-header">
+            <h2>{this.props.title}</h2>
+          </div>
           <ul>
             {items.map(item => (
               <li key={item}>{item}</li>
             ))}
-            {/* <li>Recreational</li>
-            <li>Mini Company</li>
-            <li>Junior Company</li> */}
           </ul>
         </section>
       </div>

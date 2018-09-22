@@ -53,7 +53,7 @@ class Studio extends React.Component {
     return (
       <UserContext.Provider value={user}>
         <div>
-          <h1> Studio's page </h1>
+          <h3> {user.name} </h3>
           {error && <p>{error.message}</p>}
           <StudioNav />
 
