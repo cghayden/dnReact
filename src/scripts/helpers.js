@@ -2,6 +2,16 @@
 import { firestore } from "../firebase";
 import "firebase/firestore";
 
+export const handleInputChange = event => {
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
+
+  this.setState({
+    [name]: value
+  });
+};
+
 export const loadParentData = async docRef => {
   try {
     return await docRef

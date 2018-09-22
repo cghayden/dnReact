@@ -19,12 +19,6 @@ class LandingNav extends Component {
             <button>Create a Studio Account</button>
           </Link>
         </nav>
-
-        <Router>
-          <Login className="content" path="login" />
-          <CreateParent path="createParent" />
-          <CreateStudio path="createStudio" />
-        </Router>
       </Fragment>
     );
   }

@@ -177,7 +177,7 @@ class CreateParent extends Component {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Email</label>
                 <input
                   name="email"
@@ -186,7 +186,7 @@ class CreateParent extends Component {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Password</label>
                 <input
                   name="password"
@@ -195,7 +195,7 @@ class CreateParent extends Component {
                 />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label>Address</label>
                 <input
                   id="autocomplete"
@@ -204,7 +204,7 @@ class CreateParent extends Component {
                   type="text"
                 />
               </div>
-              <div>
+              <div className="form-field">
                 <label>Number</label>
                 <input
                   id="street_number"
@@ -213,7 +213,7 @@ class CreateParent extends Component {
                   type="text"
                 />
               </div>
-              <div>
+              <div className="form-field">
                 <label>Route</label>
                 <input
                   id="route"
@@ -222,7 +222,7 @@ class CreateParent extends Component {
                   type="text"
                 />
               </div>
-              <div>
+              <div className="form-field">
                 <label>City</label>
                 <input
                   id="locality"
@@ -231,7 +231,7 @@ class CreateParent extends Component {
                   type="text"
                 />
               </div>
-              <div>
+              <div className="form-field">
                 <label>State</label>
                 <input
                   id="administrative_area_level_1"
@@ -240,7 +240,7 @@ class CreateParent extends Component {
                   type="text"
                 />
               </div>
-              <div>
+              <div className="form-field">
                 <label>Zip Code</label>
                 <input
                   id="postal_code"

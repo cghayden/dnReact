@@ -2,9 +2,12 @@ import React, { Component, Fragment } from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { firestore } from "../firebase";
-import { navigate } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import LandingNav from "./LandingNav";
-
+import Login from "./Login";
+import CreateParent from "./CreateParent";
+import CreateStudio from "./CreateStudio";
+import LandingIndex from "./LandingIndex";
 // import LoginOrSignUp from "./LoginOrSignUp";
 
 class Landing extends Component {
@@ -39,9 +42,13 @@ class Landing extends Component {
     return (
       <Fragment>
         <LandingNav />
-        <div className="content">
-          <h1>Welcome to DancerNotes...</h1>
-        </div>
+
+        <Router>
+          <LandingIndex path="/" />
+          <Login path="login" />
+          <CreateParent path="createParent" />
+          <CreateStudio path="createStudio" />
+        </Router>
       </Fragment>
     );
   }
