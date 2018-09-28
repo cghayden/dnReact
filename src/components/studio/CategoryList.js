@@ -20,7 +20,6 @@ class CategoryList extends Component {
 
   addItemToCategory = async (category, item) => {
     const targetArray = `classCategories.${category}`;
-    console.log("targetArray", targetArray);
 
     const studioRef = await firestore.collection("studios").doc(this.props.uid);
     studioRef.update({
@@ -31,6 +30,8 @@ class CategoryList extends Component {
 
   render() {
     const { items, category } = this.props;
+    const { newCategory } = this.state;
+    const disabled = newCategory.replace(/\s/g, "").length === 0;
     return (
       <div className="category-list">
         <section>
@@ -45,12 +46,16 @@ class CategoryList extends Component {
           <div className="list-footer">
             <label className="text-small">Add a new item</label>
             <input
+              required
+              title="this field is required"
+              pattern="\S+"
               type="text"
               name="newCategory"
               value={this.state.newCategory}
               onChange={this.handleInputChange}
             />
             <button
+              disabled={disabled}
               onClick={() =>
                 this.addItemToCategory(category, this.state.newCategory)
               }

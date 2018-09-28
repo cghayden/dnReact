@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import AddDancerForm from "./AddDancerForm";
 import UserContext from "../UserContext";
-// import { navigate } from "@reach/router/lib/history";
 import ClassCategories from "./ClassCategories";
+import ClassCreate from "./ClassCreate";
 import { Link } from "@reach/router";
 class StudioActions extends Component {
   render() {
@@ -19,10 +19,18 @@ class StudioActions extends Component {
               <Link className="mh5" to="classes-Categories">
                 Edit Class Catalog
               </Link>
+              <Link className="mh5" to="classes-add">
+                Create a New Class
+              </Link>
             </nav>
             <Router>
               <AddDancerForm path="addDancer" />
               <ClassCategories path="classes-Categories" />
+              <ClassCreate
+                categories={user.classCategories}
+                path="classes-add"
+                uid={user.uid}
+              />
             </Router>
           </div>
         )}

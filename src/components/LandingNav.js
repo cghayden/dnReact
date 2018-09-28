@@ -1,8 +1,5 @@
 import React, { Fragment, Component } from "react";
-import { Link, Router } from "@reach/router";
-import Login from "./Login";
-import CreateParent from "./CreateParent";
-import CreateStudio from "./CreateStudio";
+import { Link } from "@reach/router";
 
 class LandingNav extends Component {
   render() {

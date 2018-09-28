@@ -1,27 +1,5 @@
-@function mix-neutral($color) {
-  @if (is-highest-key-value($color)) {
-    @if is-high-key-value(complement($color)) {
-      @return mix(complement($color), $color, 19%);
-    } @else {
-      @return mix(complement($color), $color, 13%);
-    }
-  } @else if (is-high-key-value($color)) {
-    @if is-high-key-value(complement($color)) {
-      @return mix(complement($color), $color, 31%);
-    } @else {
-      @return mix(complement($color), $color, 23%);
-    }
-  } @else {
-    @if is-highest-key-value(complement($color)) {
-      @return mix(complement($color), $color, 31%);
-    }
-    @if is-high-key-value(complement($color)) {
-      @return mix(complement($color), $color, 26%);
-    } @else {
-      @return mix(complement($color), $color, 23%);
-    }
-  }
-}
+@import "colorFunctions";
+
 $primaryText: hsl(203, 55%, 10%);
 $bodyBackground: hsl(197, 56%, 91%);
 $white: hsl(0, 0, 97%);
@@ -34,6 +12,11 @@ $border-blue: hsl(245, 35, 52);
 $button-blue: hsl(245, 35, 52);
 $button-blue-text: hsl(0, 0, 90%);
 
+$lightslategray: hsl(221, 7, 58);
+$darkslategray: hsl(210, 5, 14);
+$darkestslateggray: hsl(210, 5, 13);
+
+/*  old colors  */
 $blue: hsla(240, 67%, 53%, 0.9);
 $white-text: hsl(240, 40%, 92%);
 $white-text-shadow: hsl(240, 40%, 50%);

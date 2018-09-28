@@ -27,12 +27,17 @@
     font-size: 1.4rem;
     border-radius: 3px;
   }
+  select {
+    font-size: inherit;
+  }
 }
+
 .form-field {
   input {
     border-radius: 5px;
   }
 }
+
 .form-footer {
   display: flex;
   justify-content: space-around;

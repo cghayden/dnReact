@@ -1,31 +1,26 @@
 @function mix-neutral($color) {
-	@if (is-highest-key-value($color)) {
-		@if is-high-key-value(complement($color)) {
-			@return mix(complement($color), $color, 19%);
-		}
-		@else {
-			@return mix(complement($color), $color, 13%);
-		}
-	}
-	@else if (is-high-key-value($color)) {
-		@if is-high-key-value(complement($color)) {
-			@return mix(complement($color), $color, 31%);
-		}
-		@else {
-			@return mix(complement($color), $color, 23%);
-		}
-	}
-	@else {
-		@if is-highest-key-value(complement($color)) {
-			@return mix(complement($color), $color, 31%);
-		}
-		@if is-high-key-value(complement($color)) {
-			@return mix(complement($color), $color, 26%);
-		}
-		@else {
-			@return mix(complement($color), $color, 23%);
-		}
-	}
+  @if (is-highest-key-value($color)) {
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 19%);
+    } @else {
+      @return mix(complement($color), $color, 13%);
+    }
+  } @else if (is-high-key-value($color)) {
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 31%);
+    } @else {
+      @return mix(complement($color), $color, 23%);
+    }
+  } @else {
+    @if is-highest-key-value(complement($color)) {
+      @return mix(complement($color), $color, 31%);
+    }
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 26%);
+    } @else {
+      @return mix(complement($color), $color, 23%);
+    }
+  }
 }
 
 $blue: hsla(240, 67%, 53%, 0.9);
@@ -36,7 +31,10 @@ $white-text: hsl(240, 40%, 92%);
 $white-text-shadow: hsl(240, 40%, 50%);
 $whiteActive: hsl(240, 24%, 97%);
 $highlight: hsla(60, 90%, 70%, 0.95);
-$highlight-cool: hsl(240,75%, 85%);
+$highlight-cool: hsl(240, 75%, 85%);
+
+$mozilla-nav-back: rgb(34, 34, 34);
+$mozilla-nav-text: hsl(198, 81%, 73%);
 
 $first-color: $blue;
 $anchor-hover: lighten($first-color, 15%);
@@ -57,9 +55,9 @@ $secondary_neutral_dark: hsla(15, 70%, 45%, 0.8);
 $secondary_neutral_light: lighten($secondary_neutral, 35%);
 
 .highlight {
-	color: $highlight;
+  color: $highlight;
 }
 
 .highlight-cool {
-	color: $highlight-cool;
+  color: $highlight-cool;
 }

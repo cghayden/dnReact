@@ -1,0 +1,24 @@
+@function mix-neutral($color) {
+  @if (is-highest-key-value($color)) {
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 19%);
+    } @else {
+      @return mix(complement($color), $color, 13%);
+    }
+  } @else if (is-high-key-value($color)) {
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 31%);
+    } @else {
+      @return mix(complement($color), $color, 23%);
+    }
+  } @else {
+    @if is-highest-key-value(complement($color)) {
+      @return mix(complement($color), $color, 31%);
+    }
+    @if is-high-key-value(complement($color)) {
+      @return mix(complement($color), $color, 26%);
+    } @else {
+      @return mix(complement($color), $color, 23%);
+    }
+  }
+}
