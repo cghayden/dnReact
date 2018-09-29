@@ -168,8 +168,8 @@ class CreateStudio extends Component {
               </div>
               {error && <p>{error.message}</p>}
 
-              <div className="form-field">
-                <label>Name</label>
+              <div>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   name="name"

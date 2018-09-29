@@ -72,18 +72,3 @@ body {
     padding-right: 5px;
   }
 }
-
-.list-footer {
-  border-top: 2px solid $border-blue;
-  margin-bottom: 1rem;
-  label {
-    display: block;
-    text-align: left;
-  }
-  button {
-    background-color: lightcoral;
-    font-size: 0.7rem;
-    padding: 0.75rem 0.65rem;
-    border-radius: 50%;
-  }
-}
