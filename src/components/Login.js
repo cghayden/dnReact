@@ -65,7 +65,9 @@ class Login extends Component {
                 />
               </div>
               <div className="form-footer">
-                <button type="submit">Login</button>
+                <button className="btn" type="submit">
+                  Login
+                </button>
               </div>
             </form>
           </div>

@@ -114,7 +114,6 @@ a {
     display: block; }
   .form-control input {
     padding: 0.3rem 0.5rem;
-    margin-bottom: 1rem;
     font-size: 1.3rem;
     width: 95%;
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); }
@@ -130,8 +129,10 @@ a {
   .form-control select {
     font-size: inherit; }
 
-.form-field input {
-  border-radius: 5px; }
+.form-field {
+  margin: 10px 0; }
+  .form-field input {
+    border-radius: 5px; }
 
 .form-footer {
   display: flex;
@@ -271,7 +272,7 @@ body:not(:-moz-handler-blocked) fieldset {
 html {
   height: 100%; }
 
-button {
+.btn {
   font-size: 1.2rem;
   padding: 1rem 1rem;
   border-radius: 5px;
@@ -299,7 +300,8 @@ body {
   text-align: center; }
 
 .container-single {
-  margin: auto; }
+  margin: auto;
+  max-width: 500px; }
 
 .text-small {
   font-size: 0.75rem; }
@@ -314,5 +316,7 @@ body {
   padding: 1rem 0; }
   .card .dance-value {
     padding-right: 5px; }
+
+/* class creation page */
 
 /*# sourceMappingURL=style.css.map */

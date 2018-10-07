@@ -161,7 +161,7 @@ class CreateParent extends Component {
     return (
       <ScrollUp>
         <div className="content">
-          <div className="container container-single signup">
+          <div className="container container-single ">
             <form className="form-control" onSubmit={this.createAccount}>
               <div className="form-header">
                 <h2>Create a Parent Account</h2>
@@ -251,6 +251,7 @@ class CreateParent extends Component {
               </div>
               <div className="form-footer">
                 <button
+                  className="btn"
                   type="submit"
                   disabled={
                     this.state.usertype === null && !this.state.usertype

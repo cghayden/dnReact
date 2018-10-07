@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // import "firebase/firestore";
 // import { firestore } from "../../firebase";
 
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { navigate } from "@reach/router";
 
 class AddDancerForm extends Component {
@@ -59,7 +59,9 @@ class AddDancerForm extends Component {
             type="text"
             placeholder="last name"
           />
-          <button type="submit">Save Dancer</button>
+          <button className="btn" type="submit">
+            Save Dancer
+          </button>
         </form>
       </div>
     );

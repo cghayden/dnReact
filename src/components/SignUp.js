@@ -276,6 +276,7 @@ class SignUp extends Component {
 
           <div className="form-footer">
             <button
+              className="btn"
               type="submit"
               disabled={this.state.usertype === null && !this.state.usertype}
             >

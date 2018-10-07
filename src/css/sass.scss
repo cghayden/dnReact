@@ -12,7 +12,7 @@ html {
   height: 100%; // to keep footer pushed down
 }
 
-button {
+.btn {
   font-size: 1.2rem;
   padding: 1rem 1rem;
   border-radius: 5px;
@@ -53,6 +53,7 @@ body {
 
 .container-single {
   margin: auto;
+  max-width: 500px;
 }
 
 .text-small {
@@ -71,4 +72,9 @@ body {
   .dance-value {
     padding-right: 5px;
   }
+}
+
+/* class creation page */
+
+.classSelectors {
 }

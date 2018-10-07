@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import SelectBox from "./SelectBox";
+import { Link } from "@reach/router";
+
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { firestore } from "../../firebase";
 
-export default class ClassCreate extends Component {
+export default class CreateClass extends Component {
   state = {
     error: null
   };
@@ -63,16 +65,27 @@ export default class ClassCreate extends Component {
     }
   };
 
+  editCategories = () => {};
+
   render() {
     return this.props.categories ? (
-      <div className="container container-single signup">
+      <div className="container container-single">
         <form className="form-control" onSubmit={this.saveDance}>
           <div className="form-header">
             <h2>Create a new class</h2>
+            <p>category</p>
             {this.state.error && <h5>{this.state.error}</h5>}
           </div>
-          <div>
-            <SelectBox
+          <div className="classSelectors">
+            <div className="form-field">
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                onChange={this.handleSelectBoxChange}
+              />
+            </div>
+            {/* <SelectBox
               name="levels"
               choices={this.props.categories.levels}
               onChange={this.handleSelectBoxChange}
@@ -82,16 +95,8 @@ export default class ClassCreate extends Component {
               name="styles"
               choices={this.props.categories.styles}
               onChange={this.handleSelectBoxChange}
-            />
-            <div className="form-field">
-              <label>Name</label>
-              <input
-                type="text"
-                name="name"
-                onChange={this.handleSelectBoxChange}
-              />
-            </div>
-            {/* <h3>stock choices below</h3>
+            /> */}
+
             {this.props.categories &&
               Object.keys(this.props.categories).map(cat => (
                 <SelectBox
@@ -100,10 +105,13 @@ export default class ClassCreate extends Component {
                   choices={this.props.categories[cat]}
                   onChange={this.handleSelectBoxChange}
                 />
-              ))} */}
+              ))}
+            <div className="form-field" />
           </div>
           <div className="form-footer">
-            <button onClick={() => this.handleSubmit}>Submit</button>
+            <button className="btn" onClick={() => this.handleSubmit}>
+              Submit
+            </button>
           </div>
         </form>
       </div>

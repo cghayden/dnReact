@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { navigate } from "@reach/router/lib/history";
+import { Link } from "@reach/router";
 
 export default class SelectBox extends Component {
   state = {
@@ -10,10 +12,15 @@ export default class SelectBox extends Component {
     this.props.onChange(event);
   };
 
+  // editCategory = (event, category) => {
+  //   event.preventDefault();
+  //   navigate("/studio/actions/EditCategory", { category });
+  // };
+
   render() {
     const name = this.props.name.slice(0, -1);
     return (
-      <div>
+      <div className="form-field">
         <label>
           {name}
           <select
@@ -35,7 +42,18 @@ export default class SelectBox extends Component {
             <option value="star">Star Company</option> */}
           </select>
         </label>
-        {/* <input type="submit" value="Submit" /> */}
+        {/* <button className="btn" onClick={e => this.editCategory(e, this.props.name)}>
+          Edit this Category
+        </button> */}
+        <Link
+          to="../EditCategory"
+          state={{
+            category: this.props.name,
+            choices: this.props.choices
+          }}
+        >
+          edit category
+        </Link>
       </div>
     );
   }

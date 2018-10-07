@@ -22,7 +22,9 @@ class ClassCategories extends Component {
                   {({ on, togglerFunc }) => (
                     <div>
                       {on && <AddCategory uid={user.uid} />}
-                      <button onClick={togglerFunc}>Add a Category</button>
+                      <button className="btn" onClick={togglerFunc}>
+                        Add a Category
+                      </button>
                     </div>
                   )}
                 </Toggler>
