@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { firestore } from "../../firebase";
 

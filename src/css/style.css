@@ -278,6 +278,13 @@ html {
   border-radius: 5px;
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2); }
 
+.btn-naked {
+  border: none;
+  background-color: inherit; }
+
+.svg-x {
+  fill: red; }
+
 body {
   font-size: 20px;
   color: #0b1d28;

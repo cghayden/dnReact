@@ -73,7 +73,6 @@ export default class CreateClass extends Component {
         <form className="form-control" onSubmit={this.saveDance}>
           <div className="form-header">
             <h2>Create a new class</h2>
-            <p>category</p>
             {this.state.error && <h5>{this.state.error}</h5>}
           </div>
           <div className="classSelectors">
@@ -112,6 +111,7 @@ export default class CreateClass extends Component {
             <button className="btn" onClick={() => this.handleSubmit}>
               Submit
             </button>
+            <Link to="../editClassCategories">Edit Class Descriptions </Link>
           </div>
         </form>
       </div>
