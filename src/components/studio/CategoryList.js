@@ -24,32 +24,24 @@ class CategoryList extends Component {
   };
 
   deleteCategory = async category => {
-    console.log("delete", category);
-
     const studioRef = await firestore.collection("studios").doc(this.props.uid);
-    const targetArray = `classCategories.${category}`;
+    const targetArray = `${this.props.group}.${category}`;
     studioRef.update({
       [targetArray]: firebase.firestore.FieldValue.delete()
     });
   };
 
   deleteCategoryItem = async (category, item) => {
-    const targetArray = `classCategories.${category}`;
+    const targetArray = `${this.props.group}.${category}`;
     const studioRef = await firestore.collection("studios").doc(this.props.uid);
     studioRef.update({
       [targetArray]: firebase.firestore.FieldValue.arrayRemove(item)
     });
-
-    // const newItems = [...this.props.items];
-    // console.log("delete", item);
-    // const pos = newItems.indexOf(item);
-    // newItems.splice(pos, 1);
-    // console.log("newItems", newItems);
   };
 
   addItemToCategory = async (category, item) => {
     const capitalizedItem = item[0].toUpperCase() + item.slice(1);
-    const targetArray = `classCategories.${category}`;
+    const targetArray = `${this.props.group}.${category}`;
     const studioRef = await firestore.collection("studios").doc(this.props.uid);
     studioRef.update({
       [targetArray]: firebase.firestore.FieldValue.arrayUnion(capitalizedItem)
@@ -64,11 +56,10 @@ class CategoryList extends Component {
   };
 
   saveNewCategoryName = async () => {
-    console.log("clicked save");
     const oldCategoryName = this.props.category;
     const newCategoryName = this.state.newCategoryName;
 
-    const dbTarget = `classCategories.${newCategoryName}`;
+    const dbTarget = `${this.props.group}.${newCategoryName}`;
     await firestore
       .collection("studios")
       .doc(this.props.uid)

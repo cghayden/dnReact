@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "firebase/firestore";
 import { firestore } from "../../firebase";
 
-export default class AddCategory extends Component {
+export default class AddApparelCategory extends Component {
   state = {
-    newCategory: ""
+    newApparelCategory: ""
   };
   handleInputChange = event => {
     const target = event.target;
@@ -17,9 +17,11 @@ export default class AddCategory extends Component {
   };
 
   saveCategory = async event => {
-    const addCategoryButton = document.getElementById(`addCategory`);
+    const addApparelCategoryButton = document.getElementById(
+      "addApparelCategory"
+    );
     event.preventDefault();
-    const dbTarget = `${this.props.group}.${this.state.newCategory}`;
+    const dbTarget = `apparelCategories.${this.state.newCategory}`;
     await firestore
       .collection("studios")
       .doc(this.props.uid)
@@ -27,7 +29,7 @@ export default class AddCategory extends Component {
         [dbTarget]: []
       })
       .then(function() {
-        addCategoryButton.click();
+        addApparelCategoryButton.click();
       })
       .catch(error => {
         this.setState(error);
@@ -39,9 +41,12 @@ export default class AddCategory extends Component {
     return (
       <form className="pv2" onSubmit={event => this.saveCategory(event)}>
         <div className="">
-          <label htmlFor="newCategory">Name of New Category:</label>
+          <label htmlFor="newApparelCategory">
+            Name of New ApparelCategories Category:
+          </label>
           <input
-            name="newCategory"
+            id="newApparelCategory"
+            name="newApparelCategory"
             onChange={this.handleInputChange}
             type="text"
           />

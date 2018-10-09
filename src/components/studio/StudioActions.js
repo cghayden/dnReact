@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Router, Link } from "@reach/router";
 import AddDancerForm from "./AddDancerForm";
 import UserContext from "../UserContext";
-import ClassCategories from "./ClassCategories";
+import EditCatalog from "./EditCatalog";
 import CreateClass from "./CreateClass";
 
 class StudioActions extends Component {
@@ -16,7 +16,7 @@ class StudioActions extends Component {
               <Link className="mh5" to="addDancer">
                 Add a Dancer
               </Link>
-              <Link className="mh5" to="editClassCategories">
+              <Link className="mh5" to="editClassCatalog">
                 Edit Class Catalog
               </Link>
               <Link className="mh5" to="classes-add">
@@ -25,7 +25,7 @@ class StudioActions extends Component {
             </nav>
             <Router>
               <AddDancerForm path="addDancer" />
-              <ClassCategories path="editClassCategories" />
+              <EditCatalog path="editClassCatalog" />
               <CreateClass
                 categories={user.classCategories}
                 path="classes-add"
