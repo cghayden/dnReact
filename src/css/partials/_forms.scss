@@ -78,6 +78,20 @@ body:not(:-moz-handler-blocked) fieldset {
 }
 /* end radio button style */
 
+.timeInput {
+  display: grid;
+  grid-template-columns: 100px 3.25rem 0.5rem 3.25rem;
+  justify-content: center;
+  * {
+    margin: 10px 0px;
+  }
+  input {
+    width: 3rem;
+    height: 1.75rem;
+    border-radius: 5px;
+  }
+}
+
 // label {
 //   float: left;
 //   text-align: right;

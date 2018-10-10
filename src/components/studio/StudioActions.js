@@ -26,11 +26,7 @@ class StudioActions extends Component {
             <Router>
               <AddDancerForm path="addDancer" />
               <EditCatalog path="editClassCatalog" />
-              <CreateClass
-                categories={user.classCategories}
-                path="classes-add"
-                uid={user.uid}
-              />
+              <CreateClass path="classes-add" uid={user.uid} />
             </Router>
           </div>
         )}

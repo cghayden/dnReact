@@ -84,3 +84,15 @@ export const naturalCompare = (a, b) => {
 
   return ax.length - bx.length;
 };
+
+export const dump = obj => JSON.stringify(obj, null, 2);
+
+//query is an object in the shape of {category:category searchItem:item}.
+export const classFilter = (array, query) => {
+  const category = query.category;
+  const searchItem = query.searchItem;
+  let results = array.filter(dance => {
+    return dance[category] === searchItem;
+  });
+  return results;
+};

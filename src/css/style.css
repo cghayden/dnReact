@@ -168,6 +168,17 @@ body:not(:-moz-handler-blocked) fieldset {
     display: inline; }
 
 /* end radio button style */
+.timeInput {
+  display: grid;
+  grid-template-columns: 100px 3.25rem 0.5rem 3.25rem;
+  justify-content: center; }
+  .timeInput * {
+    margin: 10px 0px; }
+  .timeInput input {
+    width: 3rem;
+    height: 1.75rem;
+    border-radius: 5px; }
+
 .nav {
   color: #0b1d28;
   padding: 0.5rem 0;

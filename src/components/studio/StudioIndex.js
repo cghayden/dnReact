@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import UserContext from "../UserContext";
+import { dump, classFilter } from "../../scripts/helpers";
 
 class StudioIndex extends Component {
   render() {
+    if (this.props.user.classes) {
+      // const { user } = this.props;
+      // console.log(user.dances);
+      const filter = classFilter(this.props.user.classes, {
+        category: "Style",
+        searchItem: "Tap"
+      });
+      console.log(this.props.user.classes);
+      console.log("filter", filter);
+    }
+
     return (
       <UserContext.Consumer>
         {user => (
@@ -11,6 +23,7 @@ class StudioIndex extends Component {
               {user.name}
               's Home Page
             </h2>
+            <div>{dump(user.dances)}</div>
           </div>
         )}
       </UserContext.Consumer>

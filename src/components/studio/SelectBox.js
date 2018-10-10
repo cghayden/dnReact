@@ -11,20 +11,22 @@ export default class SelectBox extends Component {
   };
 
   render() {
-    const name = this.props.name.slice(0, -1);
+    const name = this.props.name;
+    const id = `${name}Choices`;
     return (
       <div className="form-field">
-        <label>
-          {name}
+        <label htmlFor={id}>
+          {name}:{" "}
           <select
-            id=""
+            id={id}
             value={this.state.selection}
             name={name}
             onChange={this.handleChange}
           >
             <option default value="Select..." disabled>
-              Select Class {name}
+              {name} ...
             </option>
+            <option value="">N/A</option>
             {this.props.choices.map(choice => (
               <option key={choice} value={`${choice}`}>
                 {choice}
