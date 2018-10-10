@@ -12,6 +12,21 @@
   background-color: $grey-on-white;
   border-top: 5px solid $border-blue;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  min-width: 200px;
   width: 320px;
   margin: 1rem;
+}
+.list-footer {
+  border-top: 2px solid $border-blue;
+  // margin-bottom: 1rem;
+  label {
+    display: block;
+    text-align: left;
+  }
+  button {
+    background-color: lightcoral;
+    font-size: 0.7rem;
+    padding: 0.75rem 0.65rem;
+    border-radius: 50%;
+  }
 }

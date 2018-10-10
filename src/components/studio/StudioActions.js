@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import AddDancerForm from "./AddDancerForm";
 import UserContext from "../UserContext";
-// import { navigate } from "@reach/router/lib/history";
-import ClassCategories from "./ClassCategories";
-import { Link } from "@reach/router";
+import EditCatalog from "./EditCatalog";
+import CreateClass from "./CreateClass";
+
 class StudioActions extends Component {
   render() {
     return (
@@ -16,13 +16,17 @@ class StudioActions extends Component {
               <Link className="mh5" to="addDancer">
                 Add a Dancer
               </Link>
-              <Link className="mh5" to="classes-Categories">
+              <Link className="mh5" to="editClassCatalog">
                 Edit Class Catalog
+              </Link>
+              <Link className="mh5" to="classes-add">
+                Create a New Class
               </Link>
             </nav>
             <Router>
               <AddDancerForm path="addDancer" />
-              <ClassCategories path="classes-Categories" />
+              <EditCatalog path="editClassCatalog" />
+              <CreateClass path="classes-add" uid={user.uid} />
             </Router>
           </div>
         )}

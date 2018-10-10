@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import UserContext from "../UserContext";
-import CategoryList from "./CategoryList";
 import AddCategory from "./AddCategory";
+import CategoryList from "./CategoryList";
 import Toggler from "../Toggler";
-class ClassCategories extends Component {
+import UserContext from "../UserContext";
+
+export default class ApparelCategories extends Component {
   render() {
     return (
       <UserContext.Consumer>
@@ -11,21 +12,21 @@ class ClassCategories extends Component {
           <div className="container">
             <div className="categories">
               <div className="container-header">
-                <h1>Class Categories</h1>
+                <h1>Apparel Categories & Choices</h1>
               </div>
               <div className="">
                 <Toggler>
                   {({ on, togglerFunc }) => (
                     <div>
                       {on && (
-                        <AddCategory uid={user.uid} group="classCategories" />
+                        <AddCategory group="apparelCategories" uid={user.uid} />
                       )}
                       <button
                         id="addCategory"
                         className="btn"
                         onClick={togglerFunc}
                       >
-                        Add a Category
+                        Add an Apparel Category
                       </button>
                     </div>
                   )}
@@ -35,13 +36,13 @@ class ClassCategories extends Component {
               <div className="categories-body">
                 {/* wait for user to be loaded into provider... && */}
                 {/* for each category in categories, render CategoryList */}
-                {user.classCategories &&
-                  Object.keys(user.classCategories).map(cat => (
+                {user.apparelCategories &&
+                  Object.keys(user.apparelCategories).map(cat => (
                     <CategoryList
-                      group="classCategories"
+                      group="apparelCategories"
                       key={cat}
                       category={cat}
-                      items={user.classCategories[cat]}
+                      items={user.apparelCategories[cat]}
                       uid={user.uid}
                     />
                   ))}
@@ -53,5 +54,3 @@ class ClassCategories extends Component {
     );
   }
 }
-
-export default ClassCategories;

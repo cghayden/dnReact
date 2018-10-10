@@ -161,15 +161,15 @@ class CreateStudio extends Component {
     return (
       <ScrollUp>
         <div className="content">
-          <div className="container container-single signup">
+          <div className="container container-single ">
             <form className="form-control" onSubmit={this.createAccount}>
               <div className="form-header">
                 <h1 className="pb3">Create a Studio Account</h1>
               </div>
               {error && <p>{error.message}</p>}
 
-              <div className="form-field">
-                <label>Name</label>
+              <div>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   name="name"
@@ -252,6 +252,7 @@ class CreateStudio extends Component {
 
               <div className="form-footer">
                 <button
+                  className="btn"
                   type="submit"
                   disabled={
                     this.state.usertype === null && !this.state.usertype

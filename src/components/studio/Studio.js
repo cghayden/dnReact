@@ -58,7 +58,7 @@ class Studio extends React.Component {
           <StudioNav />
 
           <Router>
-            <StudioIndex path="/" />
+            <StudioIndex user={this.state.user} path="/" />
             <Dancers path="dancers" />
             <Classes path="classes" />
             <Competitions path="competitions" />

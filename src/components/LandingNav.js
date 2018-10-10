@@ -1,8 +1,5 @@
 import React, { Fragment, Component } from "react";
-import { Link, Router } from "@reach/router";
-import Login from "./Login";
-import CreateParent from "./CreateParent";
-import CreateStudio from "./CreateStudio";
+import { Link } from "@reach/router";
 
 class LandingNav extends Component {
   render() {
@@ -10,13 +7,13 @@ class LandingNav extends Component {
       <Fragment>
         <nav className="nav">
           <Link to="login">
-            <button>Login</button>
+            <button className="btn">Login</button>
           </Link>
           <Link to="createParent">
-            <button>Create a Parent Account</button>
+            <button className="btn">Create a Parent Account</button>
           </Link>
           <Link to="createStudio">
-            <button>Create a Studio Account</button>
+            <button className="btn">Create a Studio Account</button>
           </Link>
         </nav>
       </Fragment>

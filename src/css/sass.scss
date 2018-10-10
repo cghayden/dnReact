@@ -12,11 +12,19 @@ html {
   height: 100%; // to keep footer pushed down
 }
 
-button {
+.btn {
   font-size: 1.2rem;
   padding: 1rem 1rem;
   border-radius: 5px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.btn-naked {
+  border: none;
+  background-color: inherit;
+}
+.svg-x {
+  fill: red;
 }
 
 body {
@@ -31,6 +39,7 @@ body {
 
 //wrap everything below nav for the anchored footer
 .content {
+  text-align: center;
   padding-bottom: 80px;
   background-color: $bodyBackground;
   // text-align: center; //height of footer
@@ -40,9 +49,7 @@ body {
   // justify-items: center;
   // grid-gap: 20px;
 }
-.content {
-  text-align: center;
-}
+
 .container {
   background-color: $white;
   border-radius: 10px;
@@ -54,6 +61,7 @@ body {
 
 .container-single {
   margin: auto;
+  max-width: 500px;
 }
 
 .text-small {
@@ -74,17 +82,7 @@ body {
   }
 }
 
-.list-footer {
-  border-top: 2px solid $border-blue;
-  margin-bottom: 1rem;
-  label {
-    display: block;
-    text-align: left;
-  }
-  button {
-    background-color: lightcoral;
-    font-size: 0.7rem;
-    padding: 0.75rem 0.65rem;
-    border-radius: 50%;
-  }
+/* class creation page */
+
+.classSelectors {
 }
