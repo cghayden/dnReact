@@ -7,6 +7,7 @@
 @import "partials/forms";
 @import "partials/nav";
 @import "partials/studioCatalog";
+@import "partials/classes";
 
 html {
   height: 100%; // to keep footer pushed down
@@ -42,12 +43,6 @@ body {
   text-align: center;
   padding-bottom: 80px;
   background-color: $bodyBackground;
-  // text-align: center; //height of footer
-  // display: grid;
-  // grid-template-columns: 1fr;
-  // grid-template-rows: 1fr;
-  // justify-items: center;
-  // grid-gap: 20px;
 }
 
 .container {
@@ -80,9 +75,4 @@ body {
   .dance-value {
     padding-right: 5px;
   }
-}
-
-/* class creation page */
-
-.classSelectors {
 }

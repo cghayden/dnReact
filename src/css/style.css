@@ -280,6 +280,41 @@ body:not(:-moz-handler-blocked) fieldset {
     padding: 0.75rem 0.65rem;
     border-radius: 50%; }
 
+.classes-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "filter display"; }
+
+.sidebar-filter {
+  grid-area: filter;
+  background-color: lightcoral; }
+
+.filter-form {
+  background-color: lightseagreen;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px; }
+
+.classes-cards-display {
+  grid-area: display;
+  background-color: white; }
+
+.class-card {
+  background-color: pink;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px; }
+
+.currentFilter-labels {
+  display: flex;
+  justify-content: center; }
+  .currentFilter-labels li {
+    background-color: #f6eff6;
+    padding: 5px 10px;
+    margin: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2); }
+
 html {
   height: 100%; }
 
@@ -334,7 +369,5 @@ body {
   padding: 1rem 0; }
   .card .dance-value {
     padding-right: 5px; }
-
-/* class creation page */
 
 /*# sourceMappingURL=style.css.map */

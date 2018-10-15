@@ -1,0 +1,41 @@
+.classes-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "filter display";
+}
+
+.sidebar-filter {
+  grid-area: filter;
+  background-color: lightcoral;
+}
+
+.filter-form {
+  background-color: lightseagreen;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.classes-cards-display {
+  grid-area: display;
+  background-color: white;
+}
+
+.class-card {
+  background-color: pink;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.currentFilter-labels {
+  display: flex;
+  justify-content: center;
+  li {
+    background-color: $grey-on-white;
+    padding: 5px 10px;
+    margin: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  }
+}

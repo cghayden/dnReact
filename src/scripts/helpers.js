@@ -88,7 +88,7 @@ export const naturalCompare = (a, b) => {
 export const dump = obj => JSON.stringify(obj, null, 2);
 
 //query is an object in the shape of {category:category searchItem:item}.
-export const classFilter = (array, query) => {
+export const singleFilter = (array, query) => {
   const category = query.category;
   const searchItem = query.searchItem;
   let results = array.filter(dance => {
@@ -96,3 +96,10 @@ export const classFilter = (array, query) => {
   });
   return results;
 };
+
+// queryObj = {
+//   Level: ["Junior Company", "Mini Company"],
+//   Style: ["Jazz", "Lyric"]
+// };
+
+// export const classFilter = (classesArray, queryObj) => {};
