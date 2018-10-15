@@ -4,7 +4,12 @@ export default class ActiveFiltersBar extends Component {
   render() {
     return (
       <div>
-        <h4>Active Filters:</h4>
+        <div class="activeFiltersBar-heading">
+          <h4 className="pv1">Active Filters</h4>
+          <button className="filterButton" onClick={this.props.clearFilter}>
+            Clear All
+          </button>
+        </div>
 
         <ul class="currentFilter-labels">
           {this.props.checked.map(catName => (

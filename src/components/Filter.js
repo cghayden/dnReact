@@ -6,7 +6,7 @@ class Filter extends Component {
   render() {
     return (
       <div>
-        <h5>{this.props.category}</h5>
+        <h5 className="pv2 filterHeading">{this.props.category}</h5>
         <div>
           <ul>
             {this.props.choices.map(choice => (

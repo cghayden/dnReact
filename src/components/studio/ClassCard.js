@@ -6,7 +6,6 @@ export default class ClassCard extends Component {
 
     return (
       <div className="class-card">
-        class card
         <div>
           <h2>{dance.name}</h2>
         </div>

@@ -46,7 +46,7 @@ class Classes extends React.Component {
             <div className="classes-layout">
               <div className="sidebar-filter">
                 <div className="filter-form">
-                  <button onClick={this.clearFilter}>Clear All</button>
+                  <h3>Filter by:</h3>
                   {Object.keys(user.classCategories).map(cat => (
                     <Filter
                       key={cat}
@@ -59,7 +59,10 @@ class Classes extends React.Component {
                 </div>
               </div>
               <div className="classes-cards-display">
-                <ActiveFiltersBar checked={this.state.checked} />
+                <ActiveFiltersBar
+                  clearFilter={this.clearFilter}
+                  checked={this.state.checked}
+                />
 
                 <ClassCardsDisplay
                   filterResults={this.state.filterResults}

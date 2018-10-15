@@ -6,21 +6,35 @@
 
 .sidebar-filter {
   grid-area: filter;
-  background-color: lightcoral;
 }
 
 .filter-form {
-  background-color: lightseagreen;
-  border: 2px solid black;
-  border-radius: 5px;
+  background-color: $form-back-dk;
   margin: 5px;
+  max-height: 500px;
+  overflow: scroll;
+}
+.filterHeading {
+  font-size: 1.4rem;
+  color: $darkslategray;
+}
+.filterButton {
+  border: none;
+  background-color: $bodyBackground;
+  font-size: 1.1rem;
+  margin: 5px 0;
+  color: $darkslategray;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
 .classes-cards-display {
   grid-area: display;
   background-color: white;
 }
-
+.activeFiltersBar-heading {
+  display: flex;
+}
 .class-card {
   background-color: pink;
   border: 2px solid black;
