@@ -20,6 +20,7 @@ export default class CreateClass extends Component {
 
   saveDance = async event => {
     event.preventDefault();
+    console.log(this.state);
     const newDance = { ...this.state };
 
     // save in collection of classes...
